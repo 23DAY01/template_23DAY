@@ -47,10 +47,6 @@ public class UserInfo {
     @TableField("intro")
     private String intro;
 
-    @ApiModelProperty("是否禁用")
-    @TableField("is_disabled")
-    private Integer isDisabled;
-
     @ApiModelProperty("创建时间")
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
@@ -58,6 +54,5 @@ public class UserInfo {
     @ApiModelProperty("更新时间")
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
-
 
 }

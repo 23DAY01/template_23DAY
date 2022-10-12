@@ -2,6 +2,9 @@ package site.day.template.service;
 
 import site.day.template.pojo.domain.RoleResource;
 import com.baomidou.mybatisplus.extension.service.IService;
+import site.day.template.pojo.dto.RoleResourceDTO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface RoleResourceService extends IService<RoleResource> {
 
+    List<RoleResourceDTO> listRoleResourceDTOs();
 }

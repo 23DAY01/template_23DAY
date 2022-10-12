@@ -49,7 +49,7 @@ public class Resource {
 
     @ApiModelProperty("是否匿名访问 0否 1是")
     @TableField("is_anonymous")
-    private Integer isAnonymous;
+    private Boolean isAnonymous;
 
     @ApiModelProperty("创建时间")
     @TableField(value = "create_time", fill = FieldFill.INSERT)

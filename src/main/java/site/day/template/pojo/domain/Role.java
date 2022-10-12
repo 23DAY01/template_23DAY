@@ -41,7 +41,7 @@ public class Role {
 
     @ApiModelProperty("是否禁用  0否 1是")
     @TableField("is_disabled")
-    private Integer isDisabled;
+    private Boolean isDisabled;
 
     @ApiModelProperty("创建时间")
     @TableField(value = "create_time", fill = FieldFill.INSERT)
