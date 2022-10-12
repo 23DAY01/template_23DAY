@@ -1,6 +1,5 @@
 package site.day.template.handler.securityHandler;
 
-import cn.hutool.core.util.ObjectUtil;
 import site.day.template.enums.StatusCodeEnum;
 import site.day.template.pojo.dto.UserDetail;
 import site.day.template.utils.JsonUtil;
@@ -26,7 +25,7 @@ public class LogoutSuccessHandlerImpl implements LogoutSuccessHandler {
 
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException {
-        if (ObjectUtil.isNull(authentication)) {
+        if (null == authentication) {
             WebUtil.render(httpServletResponse, JsonUtil.Object2String(ResponseAPI.fail(StatusCodeEnum.AUTH_NO_LOGIN)));
         } else {
             UserDetail userDetail = (UserDetail) authentication.getPrincipal();

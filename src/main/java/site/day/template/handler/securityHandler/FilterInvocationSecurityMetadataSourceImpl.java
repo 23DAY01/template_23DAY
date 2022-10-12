@@ -1,6 +1,5 @@
 package site.day.template.handler.securityHandler;
 
-import cn.hutool.core.collection.CollectionUtil;
 import site.day.template.pojo.dto.RoleResourceDTO;
 import site.day.template.service.RoleResourceService;
 import org.apache.commons.collections4.CollectionUtils;
@@ -62,7 +61,7 @@ public class FilterInvocationSecurityMetadataSourceImpl implements FilterInvocat
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
         // 修改接口角色关系后重新加载
-        if (CollectionUtil.isEmpty(roleResourceDTOs)) {
+        if (CollectionUtils.isEmpty(roleResourceDTOs)) {
             this.loadRoleReSource();
         }
         FilterInvocation fi = (FilterInvocation) object;

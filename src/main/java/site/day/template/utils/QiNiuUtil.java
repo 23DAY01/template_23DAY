@@ -1,6 +1,5 @@
 package site.day.template.utils;
 
-import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
@@ -82,7 +81,7 @@ public class QiNiuUtil {
     }
 
     public String Url2Key(String url) {
-        return StrUtil.removePrefix(url, DOMAIN_NAME);
+        return StringUtil.removePrefix(url, DOMAIN_NAME);
     }
 
 }

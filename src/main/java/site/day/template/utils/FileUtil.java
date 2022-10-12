@@ -1,6 +1,5 @@
 package site.day.template.utils;
 
-import cn.hutool.core.util.StrUtil;
 import lombok.SneakyThrows;
 import org.apache.commons.codec.binary.Hex;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 
 
 /**
@@ -24,15 +24,15 @@ public class FileUtil {
 
 
     /**
+     * @return java.lang.String
      * @Description 获取文件上传路径
      * @Author 23DAY
      * @Date 2022/10/12 10:17
      * @Param [java.lang.String, java.lang.String]
-     * @return java.lang.String
      **/
-    public static String generateUploadPath(String originalFilename,String typePath) throws IOException {
+    public static String generateUploadPath(String originalFilename, String typePath) throws IOException {
         //uuid作为文件名
-        String uuid = StrUtil.uuid().replaceAll("-", "");
+        String uuid = StringUtil.uuid().replaceAll("-" , "");
         // 获取文件扩展名
         String extName = getExtName(originalFilename);
         // 重新生成文件名
@@ -40,7 +40,7 @@ public class FileUtil {
         // 生成文件时间路径
         String timePath = generateTimePath();
         // 生成文件最终路径
-        return typePath + "/" + timePath + "/" +fileName;
+        return typePath + "/" + timePath + "/" + fileName;
     }
 
     /**
@@ -88,7 +88,7 @@ public class FileUtil {
 
         //通过后缀名判断是否合法
         String suffix = getExtName(fileName);
-        if (StrUtil.isEmpty(suffix) || suffix.equals("")) {
+        if (StringUtil.isEmpty(suffix) || Objects.equals(suffix, "")) {
             return false;
         }
         HashSet<String> allowSuffix = new HashSet<>(Arrays.asList("jpg" , "jpeg" , "png" , "gif"));
@@ -98,12 +98,23 @@ public class FileUtil {
 
         //通过文件流头部判断文件是否合法
         File file = MultipartFile2File(multipartFile, fileName);
-        String type = cn.hutool.core.io.FileUtil.getType(file);
+        String type = getType(file);
         if (!allowSuffix.contains(type)) {
             return false;
         }
 
         return true;
+    }
+
+    /**
+     * @Description 获取文件类型
+     * @Author 23DAY
+     * @Date 2022/10/12 23:12
+     * @Param [java.io.File]
+     * @return java.lang.String
+     **/
+    private static String getType(File file) {
+        return cn.hutool.core.io.FileUtil.getType(file);
     }
 
 

@@ -8,7 +8,6 @@ package site.day.template.filter;
  * @Version 1.0
  */
 
-import cn.hutool.core.util.StrUtil;
 import site.day.template.constant.AuthConst;
 import site.day.template.enums.StatusCodeEnum;
 import site.day.template.exception.VerificationCodeException;
@@ -16,6 +15,7 @@ import site.day.template.handler.securityHandler.AuthenticationFailHandlerImpl;
 import lombok.SneakyThrows;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.web.filter.OncePerRequestFilter;
+import site.day.template.utils.StringUtil;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -53,7 +53,7 @@ public class VerificationCodeFilter extends OncePerRequestFilter {
     public void verificationCode(HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
         String savedCode = (String) session.getAttribute(AuthConst.CAPTCHA);
-        if (StrUtil.isNullOrUndefined(savedCode)) {
+        if (StringUtil.isNullOrUndefined(savedCode)) {
             // 随手清除验证码，不管是失败还是成功，所以客户端应在登录失败时刷新验证码
             session.removeAttribute(AuthConst.CAPTCHA);
             throw new VerificationCodeException(StatusCodeEnum.AUTH_CODE_MISSING.getMessage());
@@ -61,7 +61,7 @@ public class VerificationCodeFilter extends OncePerRequestFilter {
 
         String requestCode = httpServletRequest.getParameter(AuthConst.CAPTCHA);
         // 校验不通过抛出异常  这边只能是自定义一个异常  对于RunTimeException没有地方捕获
-        if (StrUtil.isEmpty(requestCode) || StrUtil.isEmpty(savedCode) || !requestCode.equals(savedCode)) {
+        if (StringUtil.isEmpty(requestCode) || StringUtil.isEmpty(savedCode) || !requestCode.equals(savedCode)) {
             throw new VerificationCodeException(StatusCodeEnum.AUTH_CODE_ERROR.getMessage());
         }
     }
