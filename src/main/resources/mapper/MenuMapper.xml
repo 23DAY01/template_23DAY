@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.day.template.mapper.MenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="site.day.template.pojo.domain.Menu">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="path" property="path" />
+        <result column="component" property="component" />
+        <result column="icon" property="icon" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="order_num" property="orderNum" />
+        <result column="parent_id" property="parentId" />
+        <result column="is_hidden" property="isHidden" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, path, component, icon, create_time, update_time, order_num, parent_id, is_hidden
+    </sql>
+
+</mapper>
