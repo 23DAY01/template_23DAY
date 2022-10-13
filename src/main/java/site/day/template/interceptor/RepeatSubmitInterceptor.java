@@ -81,7 +81,7 @@ public class RepeatSubmitInterceptor implements HandlerInterceptor {
         String url = request.getRequestURI();
 
         // 唯一值（没有消息头则使用请求地址）
-        String submitKey = StringUtil.trimToEmpty(String.valueOf(request.getSession().getId()));
+        String submitKey = String.valueOf(request.getSession().getId());
 
         // 唯一标识（指定key + url + 消息头）
         String cacheRepeatKey = RedisPrefixConst.REPEAT_SUBMIT_KEY + url + submitKey;

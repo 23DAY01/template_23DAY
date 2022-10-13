@@ -15,6 +15,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static site.day.template.constant.RedisPrefixConst.API_ACCESS_RESTRICTION;
+
 /**
  * @Description 登出成功处理器
  * @ClassName LogoutSuccessHandlerImpl
@@ -39,7 +41,7 @@ public class ApiAccessRestrictionInterceptor implements HandlerInterceptor {
                 long seconds = accessLimit.seconds();
                 int maxCount = accessLimit.maxCount();
                 // 关于key的生成规则可以自己定义 本项目需求是对每个方法都加上限流功能，如果你只是针对ip地址限流，那么key只需要只用ip就好
-                String key = WebUtil.getIpAddress(httpServletRequest) + hm.getMethod().getName();
+                String key = API_ACCESS_RESTRICTION + WebUtil.getIpAddress(httpServletRequest) + hm.getMethod().getName();
                 // 从redis中获取用户访问的次数
                 // 此操作代表获取该key对应的值自增1后的结果
                 long q = redisUtil.incrExpire(key, seconds);

@@ -19,12 +19,12 @@ public @interface AccessLimit {
      *
      * @return int
      */
-    int seconds();
+    int seconds() default 10;
 
     /**
      * 单位时间最大请求次数
      *
      * @return int
      */
-    int maxCount();
+    int maxCount() default 5;
 }

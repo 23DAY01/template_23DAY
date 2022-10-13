@@ -39,8 +39,15 @@ public class RedisPrefixConst {
      */
     public static final String USER_LOGIN = "login:";
 
-
+    /**
+     * 重复提交
+     */
     public static final String REPEAT_SUBMIT_KEY="repeat_submit:";
+
+    /**
+     * 接口访问频繁
+     */
+    public static final String API_ACCESS_RESTRICTION="api_access_restriction:";
 
 
 }
