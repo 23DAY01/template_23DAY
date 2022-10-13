@@ -25,7 +25,7 @@ import java.util.Objects;
 
 
 /**
- * @Description 操作日志
+ * @Description 操作日志 一定要鉴权，否则会出bug
  * @ClassName OptLogAspect
  * @Author 23DAY
  * @Date 2022/9/14 22:12
