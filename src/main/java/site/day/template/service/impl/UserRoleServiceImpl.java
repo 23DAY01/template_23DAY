@@ -1,7 +1,7 @@
 package site.day.template.service.impl;
 
-import site.day.template.pojo.domain.UserRole;
 import site.day.template.mapper.UserRoleMapper;
+import site.day.template.pojo.domain.UserRole;
 import site.day.template.service.UserRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

@@ -41,7 +41,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException {
         // 返回登录信息
         UserDetail loginUser = AuthUtil.getLoginUser();
-        // UserInfoDTO = BeanCopyUtil.copyObject(AuthUtil.getLoginUser(), UserInfoDTO.class);
+        System.out.println(loginUser);
         //更新用户ip，最近登录时间
         updateUserInfo();
         WebUtil.render(httpServletResponse, JsonUtil.Object2String(ResponseAPI.success(loginUser.getUserInfoDTO())));

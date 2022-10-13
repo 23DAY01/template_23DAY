@@ -1,8 +1,8 @@
 package site.day.template.mapper;
 
-import site.day.template.pojo.domain.RoleMenu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import site.day.template.pojo.domain.RoleMenu;
 
 /**
  * <p>

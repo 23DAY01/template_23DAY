@@ -22,7 +22,7 @@ public class helloService {
     private UserInfoService userInfoService;
 
 
-    @Cacheable(value = "user")
+    @Cacheable(value = "hello")
     public List<UserInfo> getUserInfo(){
         return userInfoService.list();
     }

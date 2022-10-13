@@ -8,10 +8,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 自定义注解防止表单重复提交
- * 
- * @author ruoyi
- *
+ * @Description 重复提交
+ * @ClassName RepeatSubmit
+ * @Author 23DAY
+ * @Date 2022/9/14 22:12
+ * @Version 1.0
  */
 @Inherited
 @Target(ElementType.METHOD)

@@ -2,14 +2,10 @@ package site.day.template.pojo.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Set;
 
 /**
  * <p>
@@ -24,13 +20,16 @@ import java.util.Set;
 @Builder
 @Accessors(chain = true)
 @ApiModel(value = "用户详细信息", description = "")
+@ToString
 public class UserInfoDTO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * 用户信息id
      */
     @ApiModelProperty("用户信息id")
-    private Integer userInfoId;
+    private Integer id;
 
     /**
      * 邮箱号

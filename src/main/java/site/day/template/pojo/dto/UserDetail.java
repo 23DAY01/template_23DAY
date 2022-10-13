@@ -1,10 +1,16 @@
 package site.day.template.pojo.dto;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,9 +18,14 @@ import java.util.stream.Collectors;
 import static site.day.template.constant.CommonConst.FALSE;
 
 
-@Data
-public class UserDetail implements UserDetails {
+@Getter
+@Setter
+@Accessors(chain = true)
+@ApiModel(value = "UserDetail", description = "")
+@ToString
+public class UserDetail implements UserDetails, Serializable {
 
+    private static final long serialVersionUID = 1L;
     //    用户认证
     private UserAuthDTO userAuthDto;
 
@@ -23,9 +34,6 @@ public class UserDetail implements UserDetails {
 
     //    权限列表
     private List<String> roleList;
-
-
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

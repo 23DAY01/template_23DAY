@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -14,18 +15,20 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 23DAY
- * @since 2022-10-12
+ * @since 2022-10-13
  */
 @Getter
 @Setter
 @Accessors(chain = true)
 @TableName("day_user_info")
 @ApiModel(value = "UserInfo对象", description = "")
-public class UserInfo {
+public class UserInfo implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("用户ID")
     @TableId(value = "id", type = IdType.AUTO)
@@ -54,5 +57,6 @@ public class UserInfo {
     @ApiModelProperty("更新时间")
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
+
 
 }

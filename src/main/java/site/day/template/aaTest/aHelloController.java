@@ -5,7 +5,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import site.day.template.annotation.OptLog;
 import site.day.template.annotation.RepeatSubmit;
+import site.day.template.constant.OptTypeConst;
 import site.day.template.utils.ResponseAPI;
 
 /**
@@ -30,6 +32,7 @@ public class aHelloController {
 
 //    @RepeatSubmit
     @GetMapping("/hello2")
+    @OptLog(optType = OptTypeConst.UPDATE)
     @ApiOperation(value = "hello2")
     public ResponseAPI<?> hello2() {
         return ResponseAPI.success(helloService.getUserInfo());

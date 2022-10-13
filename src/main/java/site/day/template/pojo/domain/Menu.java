@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -14,18 +15,20 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 23DAY
- * @since 2022-10-12
+ * @since 2022-10-13
  */
 @Getter
 @Setter
 @Accessors(chain = true)
 @TableName("day_menu")
 @ApiModel(value = "Menu对象", description = "")
-public class Menu {
+public class Menu implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("主键")
     @TableId(value = "id", type = IdType.AUTO)
@@ -65,7 +68,7 @@ public class Menu {
 
     @ApiModelProperty("是否隐藏  0否1是")
     @TableField("is_hidden")
-    private Integer isHidden;
+    private Boolean isHidden;
 
 
 }

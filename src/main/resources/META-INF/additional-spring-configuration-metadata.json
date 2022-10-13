@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "23DAY.template.name",
+      "type": "java.lang.String",
+      "description": "Description for 23day.template.name."
+    },
+    {
+      "name": "23DAY.template.copyrightYear",
+      "type": "java.lang.String",
+      "description": "Description for 23day.template.copyrightYear."
+    }
+  ] }

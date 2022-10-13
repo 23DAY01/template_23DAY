@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -21,7 +22,10 @@ import java.time.LocalDateTime;
 @Setter
 @Accessors(chain = true)
 @ApiModel(value = "UserAuthDto对象", description = "")
+@ToString
 public class UserAuthDTO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Integer id;
 

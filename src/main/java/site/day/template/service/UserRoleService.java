@@ -1,7 +1,7 @@
 package site.day.template.service;
 
-import site.day.template.pojo.domain.UserRole;
 import com.baomidou.mybatisplus.extension.service.IService;
+import site.day.template.pojo.domain.UserRole;
 
 /**
  * <p>

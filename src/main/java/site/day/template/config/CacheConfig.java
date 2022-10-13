@@ -77,7 +77,6 @@ public class CacheConfig extends CachingConfigurerSupport {
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
         objectMapper.registerModule(new JavaTimeModule());
-
         GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer(objectMapper);
 
         RedisCacheConfiguration cacheConfiguration = RedisCacheConfiguration.
@@ -112,8 +111,8 @@ public class CacheConfig extends CachingConfigurerSupport {
         //可以通过一个常量类CacheNameTimeConstant来定制 这里就先这么写了
         //.withInitialCacheConfigurations(CacheNameTimeConstant.initConfigs(redisCacheConfiguration))
 
-        TTlParam.put("users", RedisCacheConfiguration
-                .defaultCacheConfig().entryTtl(Duration.ofSeconds(60000)));
+//        TTlParam.put("users", RedisCacheConfiguration
+//                .defaultCacheConfig().entryTtl(Duration.ofSeconds(60000)));
     }
 
 }

@@ -51,9 +51,7 @@ public interface MapStruct {
     /*
       资源认证  转换
      */
-    @Mappings({
-            @Mapping(target = "resourceId" , source = "id")
-    })
+    @Mapping(target = "resourceId" , source = "id")
     RoleResourceDTO resource2roleResource(Resource resource);
 
     List<RoleResourceDTO> resources2roleResources(List<Resource> resourceList);
@@ -74,6 +72,7 @@ public interface MapStruct {
     /*
      * 用户信息 转换
      **/
+
     UserInfoDTO userInfo2UserInfoDto(UserInfo userInfo);
 
     List<UserInfoDTO> userInfos2UserInfoDtos(List<UserInfo> userInfos);

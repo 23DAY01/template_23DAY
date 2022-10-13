@@ -1,7 +1,7 @@
 package site.day.template.service.impl;
 
-import site.day.template.pojo.domain.RoleMenu;
 import site.day.template.mapper.RoleMenuMapper;
+import site.day.template.pojo.domain.RoleMenu;
 import site.day.template.service.RoleMenuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
