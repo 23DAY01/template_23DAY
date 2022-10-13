@@ -1,5 +1,9 @@
 package site.day.template.config;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.interceptor.*;
@@ -18,6 +22,7 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.TimeZone;
 
 
 /**
@@ -34,20 +39,6 @@ public class CacheConfig extends CachingConfigurerSupport {
     private RedisConnectionFactory redisConnectionFactory;
 
     private Map<String, RedisCacheConfiguration> TTlParam = new HashMap<>();
-
-    //@Override
-    //@Bean
-    //public KeyGenerator keyGenerator() {
-    //    return (o, method, objects) -> {
-    //        StringBuilder sb = new StringBuilder();
-    //        sb.append(o.getClass().getName()).append(".");
-    //        sb.append(method.getName()).append(".");
-    //        for (Object obj : objects) {
-    //            sb.append(obj.toString());
-    //        }
-    //        return sb.toString();
-    //    };
-    //}
 
     @Override
     @Bean
@@ -80,18 +71,30 @@ public class CacheConfig extends CachingConfigurerSupport {
      **/
     @Override
     public CacheManager cacheManager() {
+
+        //针对java8下LocalDateTime反序列化的处理
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
+        objectMapper.registerModule(new JavaTimeModule());
+
+        GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer(objectMapper);
+
         RedisCacheConfiguration cacheConfiguration = RedisCacheConfiguration.
                 defaultCacheConfig()
                 .entryTtl(Duration.ofMinutes(30))
                 .computePrefixWith(name -> name + ":")
                 // 设置key采用String的序列化方式
-                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(StringRedisSerializer.UTF_8))
+                .serializeKeysWith(RedisSerializationContext
+                        .SerializationPair
+                        .fromSerializer(StringRedisSerializer.UTF_8))
                 //当value为null时不进行缓存
                 .disableCachingNullValues()
                 //设置value序列化方式采用jackson方式序列化
                 .serializeValuesWith(RedisSerializationContext
                         .SerializationPair
-                        .fromSerializer(new GenericJackson2JsonRedisSerializer()));
+                        .fromSerializer(genericJackson2JsonRedisSerializer));
+
         return RedisCacheManager
                 .builder(redisConnectionFactory)
                 .cacheDefaults(cacheConfiguration)
@@ -108,7 +111,6 @@ public class CacheConfig extends CachingConfigurerSupport {
 
         //可以通过一个常量类CacheNameTimeConstant来定制 这里就先这么写了
         //.withInitialCacheConfigurations(CacheNameTimeConstant.initConfigs(redisCacheConfiguration))
-
 
         TTlParam.put("users", RedisCacheConfiguration
                 .defaultCacheConfig().entryTtl(Duration.ofSeconds(60000)));

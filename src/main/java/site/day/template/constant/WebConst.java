@@ -1,5 +1,7 @@
 package site.day.template.constant;
 
+import java.nio.charset.StandardCharsets;
+
 /**
  * @Description web 常量
  * @ClassName WebConst
@@ -38,6 +40,18 @@ public interface WebConst {
     interface SECURITY {
         String IV_KEY = "0000000000000000";
         String ENCODE_KEY = "1234567812345678";
+    }
+
+    interface CODE{
+        /**
+         * UTF-8 字符集
+         */
+        public static final String UTF8 = String.valueOf(StandardCharsets.UTF_8);
+
+        /**
+         * GBK 字符集
+         */
+        public static final String GBK = "GBK";
     }
 
 }

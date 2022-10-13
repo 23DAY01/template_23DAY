@@ -178,7 +178,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                记住我功能
                 .rememberMe()
                 .key(AuthConst.REMEMBER_ME_KEY)
-                .tokenValiditySeconds(60 * 60 * 24 * 7)
+                .tokenValiditySeconds(AuthConst.TOKEN_VALIDITY_SECONDS)
                 .and()
 
 //                springSecurity的跨域配置

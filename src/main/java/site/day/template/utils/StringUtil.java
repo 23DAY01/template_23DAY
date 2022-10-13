@@ -54,4 +54,19 @@ public class StringUtil {
     public static String removePrefix(String str, String prefix) {
         return StrUtil.removePrefix(str, prefix);
     }
+
+    /**
+     * @Description 是否以某个字符串开始
+     * @Author 23DAY
+     * @Date 2022/10/13 10:49
+     * @Param [java.lang.String, java.lang.String]
+     * @return java.lang.Boolean
+     **/
+    public static Boolean startsWithIgnoreCase(String contentType, String applicationJsonValue) {
+        return StrUtil.startWithIgnoreCase(contentType,applicationJsonValue);
+    }
+
+    public static String trimToEmpty(String str) {
+        return str == null ? "" : str.trim();
+    }
 }

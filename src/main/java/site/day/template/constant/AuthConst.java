@@ -19,4 +19,8 @@ public class AuthConst {
      */
     public static final String REMEMBER_ME_KEY = "remember_key";
 
+    /**
+     * token过期时间
+     */
+    public static final Integer TOKEN_VALIDITY_SECONDS=60 * 60 * 24 * 7;
 }

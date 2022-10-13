@@ -3,6 +3,8 @@ package site.day.template.constant;
 
 import cn.hutool.core.date.DatePattern;
 
+import java.nio.charset.StandardCharsets;
+
 /**
  * @Description 公共 常量
  * @ClassName CommonConst
@@ -41,5 +43,7 @@ public class CommonConst {
      * 时间格式
      */
     public static final String DATE_PATTERN = DatePattern.NORM_DATETIME_PATTERN;
+
+
 
 }

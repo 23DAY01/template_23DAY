@@ -98,12 +98,13 @@ public class GlobalExceptionHandler {
         return ResponseAPI.fail(StatusCodeEnum.REDIS_CONNECTION_ERROR);
     }
 
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseAPI<?> AllException(RuntimeException runtimeException){
+    @ExceptionHandler(Exception.class)
+    public ResponseAPI<?> AllException(Exception runtimeException){
         log.error("未知异常:{}",runtimeException.getMessage());
-        return ResponseAPI.fail(StatusCodeEnum.UNKNOWN_SERVER_ERROR);
-
+        return ResponseAPI.fail(StatusCodeEnum.UNKNOWN_ERROR);
     }
+
+
 
 
 }

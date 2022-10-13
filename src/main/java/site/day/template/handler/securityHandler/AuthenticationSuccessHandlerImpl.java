@@ -45,8 +45,6 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
         //更新用户ip，最近登录时间
         updateUserInfo();
         WebUtil.render(httpServletResponse, JsonUtil.Object2String(ResponseAPI.success(loginUser.getUserInfoDTO())));
-        //更新用户ip，最近登录时间
-        updateUserInfo();
     }
 
     /**

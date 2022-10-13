@@ -2,6 +2,7 @@ package site.day.template.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,10 @@ import java.util.Map;
 public class JsonUtil {
 
     private final static ObjectMapper objectMapper=new ObjectMapper();
+
+    static {
+        objectMapper.registerModule(new JavaTimeModule());
+    }
 
     /**
      * @Description string -> json

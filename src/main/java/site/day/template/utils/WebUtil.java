@@ -4,14 +4,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import site.day.template.constant.WebConst;
 import eu.bitwalker.useragentutils.UserAgent;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
@@ -26,11 +29,11 @@ import java.util.Map;
 public class WebUtil {
 
     /**
+     * @return java.lang.String
      * @Description 获取用户ip地址
      * @Author 23DAY
      * @Date 2022/9/15 10:27
      * @Param [javax.servlet.http.HttpServletRequest]
-     * @return java.lang.String
      **/
     public static String getIpAddress(HttpServletRequest request) {
         String ipAddress = null;
@@ -70,11 +73,11 @@ public class WebUtil {
     }
 
     /**
+     * @return java.lang.String
      * @Description 解析ip地址
      * @Author 23DAY
      * @Date 2022/9/15 10:28
      * @Param [java.lang.String]
-     * @return java.lang.String
      **/
     public static String getIpSource(String ipAddress) {
         try {
@@ -88,7 +91,7 @@ public class WebUtil {
             }
             reader.close();
             ObjectMapper objectMapper = new ObjectMapper();
-            Map<?,?> map = objectMapper.readValue(result.toString(), Map.class);
+            Map<?, ?> map = objectMapper.readValue(result.toString(), Map.class);
 //            Map map = objectMapper.convertValue(result.toString(), Map.class);
 //            Map map = JSON.parseObject(result.toString(), Map.class);
             List<Map<String, String>> data = (List) map.get("data");
@@ -99,13 +102,13 @@ public class WebUtil {
     }
 
     /**
+     * @return eu.bitwalker.useragentutils.UserAgent
      * @Description 获取访问设备
      * @Author 23DAY
      * @Date 2022/9/15 10:46
      * @Param [javax.servlet.http.HttpServletRequest]
-     * @return eu.bitwalker.useragentutils.UserAgent
      **/
-    public static UserAgent getUserAgent(HttpServletRequest request){
+    public static UserAgent getUserAgent(HttpServletRequest request) {
         return UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
     }
 
@@ -117,12 +120,32 @@ public class WebUtil {
      */
     public static void render(HttpServletResponse response, String string) {
         try {
-             response.setContentType(WebConst.HEADER.CONTENT_TYPE_JSON);
+            response.setContentType(WebConst.HEADER.CONTENT_TYPE_JSON);
             response.setCharacterEncoding(WebConst.HEADER.CHARSET);
             response.getWriter().write(string);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * @return java.lang.String
+     * @Description 获取请求体
+     * @Author 23DAY
+     * @Date 2022/10/13 10:00
+     * @Param [javax.servlet.ServletRequest]
+     **/
+    public static String getRequestBody(ServletRequest request) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        BufferedReader reader = null;
+        InputStream inputStream = request.getInputStream();
+        reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+        String line = "";
+        while ((line = reader.readLine()) != null) {
+            sb.append(line);
+        }
+        reader.close();
+        return sb.toString();
     }
 
 

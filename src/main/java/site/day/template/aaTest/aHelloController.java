@@ -1,9 +1,12 @@
-package site.day.template.controller;
+package site.day.template.aaTest;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import site.day.template.annotation.RepeatSubmit;
+import site.day.template.utils.ResponseAPI;
 
 /**
  * @Description
@@ -15,16 +18,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Api("hello")
 public class aHelloController {
+
+    @Autowired
+    private helloService helloService;
+
     @GetMapping("/hello")
     @ApiOperation(value = "hello")
-    public String hello(){
+    public String hello() {
         return "hello";
     }
 
+//    @RepeatSubmit
     @GetMapping("/hello2")
     @ApiOperation(value = "hello2")
-    public String hello2(){
-        return "hello2";
+    public ResponseAPI<?> hello2() {
+        return ResponseAPI.success(helloService.getUserInfo());
     }
 
 

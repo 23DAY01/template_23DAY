@@ -1,5 +1,6 @@
-package site.day.template.handler.securityHandler;
+package site.day.template.interceptor;
 
+import org.springframework.stereotype.Component;
 import site.day.template.annotation.AccessLimit;
 import site.day.template.enums.StatusCodeEnum;
 import site.day.template.utils.JsonUtil;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Version 1.0
  */
 @Log4j2
-public class WebSecurityHandler implements HandlerInterceptor {
+public class ApiAccessRestrictionInterceptor implements HandlerInterceptor {
 
     @Resource
     private RedisUtil redisUtil;
