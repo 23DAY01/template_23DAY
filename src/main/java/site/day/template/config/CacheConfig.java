@@ -40,6 +40,13 @@ public class CacheConfig extends CachingConfigurerSupport {
 
     private Map<String, RedisCacheConfiguration> TTlParam = new HashMap<>();
 
+    /**
+     * @Description key生成策略
+     * @Author 23DAY
+     * @Date 2022/10/14 20:46
+     * @Param []
+     * @return org.springframework.cache.interceptor.KeyGenerator
+     **/
     @Override
     @Bean
     public KeyGenerator keyGenerator() {

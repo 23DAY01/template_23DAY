@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static site.day.template.constant.CommonConst.FALSE;
@@ -22,7 +23,6 @@ import static site.day.template.constant.CommonConst.FALSE;
 @Setter
 @Accessors(chain = true)
 @ApiModel(value = "UserDetail", description = "")
-@ToString
 public class UserDetail implements UserDetails, Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,7 +54,7 @@ public class UserDetail implements UserDetails, Serializable {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return this.userAuthDto.getIsDisabled() == FALSE;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class UserDetail implements UserDetails, Serializable {
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return this.userAuthDto.getIsDisabled() == FALSE;
     }
 
     @Override
@@ -72,4 +72,21 @@ public class UserDetail implements UserDetails, Serializable {
         return true;
     }
 
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        UserDetail that = (UserDetail) o;
+//        return Objects.equals(userAuthDto.getUsername(), that.userAuthDto.getUsername());
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(userAuthDto.getUsername());
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return userAuthDto.getUsername();
+//    }
 }

@@ -22,5 +22,73 @@ public class AuthConst {
     /**
      * token过期时间
      */
-    public static final Integer TOKEN_VALIDITY_SECONDS=60 * 60 * 24 * 7;
+    public static final Integer TOKEN_VALIDITY_SECONDS = 60 * 60 * 24 * 7;
+
+    public interface StatusMessage {
+
+
+        String SUCCESS = "success";
+        String UNKNOWN_ERROR = "unknown_error";
+
+        /**
+         * Client
+         **/
+        //        参数错误
+        String PARAM_MISSING = "参数缺失";
+        String PARAM_TYPE_ERROR = "参数类型错误";
+        String PARAM_NOT_VALID = "参数校验失败";
+
+
+        //        文件错误
+        String FILE_EMPTY = "文件为空";
+        String FILE_TYPE_ERROR = "文件类型错误";
+
+
+        //        权限认证错误
+        String AUTH_NO_LOGIN = "尚未登录";
+        String AUTH_PERMISSION_DENIED = "缺少权限";
+        String AUTH_UorP_ERROR = "账号不存在或密码错误";
+        String AUTH_USERNAME_EMPTY = "用户名为空";
+        String AUTH_USERNAME_MISSING = "账号不存在";
+        String AUTH_FAIL = "认证失败";
+        String AUTH_CODE_ERROR = "校验码错误";
+        String AUTH_CODE_MISSING = "校验码为空";
+        String AUTH_SESSION_TIMEOUT = "session过期";
+        String AUTH_ACCOUNT_LOCKED = "用户帐号已被锁定";
+        String AUTH_METHOD_NOT_AVAILABLE = "访问登录接口方法错误";
+        String AUTH_SESSION_CONCURRENCE_MAX = "账号已在别处登录";
+
+
+        //        api错误
+        String API_ACCESS_FREQUENT = "接口访问频繁";
+        String API_REPEAT_SUBMIT = "重复提交";
+
+        //        未知错误
+        String UNKNOWN_CLIENT_ERROR = "客户端未知异常";
+
+
+        /**
+         * Server
+         **/
+        //        参数错误
+        String PARAM_OPERATION_ERROR = "参数封装失败";
+
+
+        //        文件错误
+        String FILE_UPLOAD_ERROR = "文件上传失败";
+        String FILE_DOWNLOAD_ERROR = "文件下载失败";
+
+
+        //      数据库错误
+        String SQL_ERROR = "数据库异常";
+
+
+        //        redis错误
+        String REDIS_CONNECTION_ERROR = "redis连接异常";
+
+
+        //        未知错误
+        String UNKNOWN_SERVER_ERROR = "服务器未知错误";
+
+    }
 }

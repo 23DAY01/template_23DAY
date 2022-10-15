@@ -24,7 +24,7 @@ public class MybatisPlusConfig {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         // 分页拦截器
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
-        // 阻止全表更新（此配置非常有用，不能不遵守规范的开发者）
+        // 阻止全表更新
         interceptor.addInnerInterceptor(new BlockAttackInnerInterceptor());
 //        // 乐观锁需要表示字段
 //        interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());

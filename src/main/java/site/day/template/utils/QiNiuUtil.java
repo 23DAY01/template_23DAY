@@ -15,7 +15,6 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import site.day.template.exception.BusinessException;
 
 /**
  * @Description 七牛云配置
@@ -59,7 +58,7 @@ public class QiNiuUtil {
             return putRet.key;
         } catch (QiniuException qiniuException) {
             //throw BusinessException.withCode(StatusCode.SERVER.FILE_UPLOAD_ERROR.getCode(), StatusCode.SERVER.FILE_UPLOAD_ERROR.getMessage());
-            throw BusinessException.withErrorServerEnum(StatusCodeEnum.FILE_UPLOAD_ERROR);
+            throw BusinessException.withErrorCodeEnum(StatusCodeEnum.FILE_UPLOAD_ERROR);
         }
     }
 
@@ -75,7 +74,7 @@ public class QiNiuUtil {
             Response response = bucketManager.delete(BUCKET, key);
         } catch (QiniuException qiniuException) {
             //throw BusinessException.withCode(StatusCode.SERVER.FILE_DOWNLOAD_ERROR.getCode(), StatusCode.SERVER.FILE_DOWNLOAD_ERROR.getMessage());
-            throw BusinessException.withErrorServerEnum(StatusCodeEnum.FILE_DOWNLOAD_ERROR);
+            throw BusinessException.withErrorCodeEnum(StatusCodeEnum.FILE_DOWNLOAD_ERROR);
         }
 
     }

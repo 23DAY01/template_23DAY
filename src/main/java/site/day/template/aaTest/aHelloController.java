@@ -31,14 +31,18 @@ public class aHelloController {
         return "hello";
     }
 
-//    @RepeatSubmit
+    //    @RepeatSubmit
     @GetMapping("/hello2")
     @OptLog(optType = OptTypeConst.UPDATE)
-    @AccessLimit(seconds = 10,maxCount = 2)
+    @AccessLimit(seconds = 10, maxCount = 2)
     @ApiOperation(value = "hello2")
     public ResponseAPI<?> hello2() {
         return ResponseAPI.success(helloService.getUserInfo());
     }
 
 
+    @GetMapping("/hello3")
+    public ResponseAPI<?> hello3() {
+        return ResponseAPI.success("hello");
+    }
 }

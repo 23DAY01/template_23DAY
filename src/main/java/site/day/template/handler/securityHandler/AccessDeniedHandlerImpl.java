@@ -15,7 +15,7 @@ import java.io.IOException;
 
 
 /**
- * @Description 权限不足处理器
+ * @Description 授权异常处理器
  * @ClassName AccessDeniedHandlerImpl
  * @Author 23DAY
  * @Date 2022/9/14 22:12
@@ -28,5 +28,4 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException {
         WebUtil.render(httpServletResponse, JsonUtil.Object2String(ResponseAPI.fail(StatusCodeEnum.AUTH_PERMISSION_DENIED)));
     }
-
 }

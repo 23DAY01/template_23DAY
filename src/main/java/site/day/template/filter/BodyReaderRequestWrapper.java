@@ -27,6 +27,9 @@ public class BodyReaderRequestWrapper extends HttpServletRequestWrapper {
     public BodyReaderRequestWrapper(HttpServletRequest request) throws IOException {
         super(request);
         request.setCharacterEncoding(WebConst.CODE.UTF8);
+        System.out.println(request.getSession().getId());
+        System.out.println(request.getSession().getLastAccessedTime());
+        System.out.println(request.getSession().getCreationTime());
         body = WebUtil.getRequestBody(request).getBytes(WebConst.CODE.UTF8);
     }
 

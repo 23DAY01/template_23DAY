@@ -14,7 +14,7 @@ import java.io.IOException;
 
 
 /**
- * @Description 用户未登录处理器
+ * @Description 认证异常处理器
  * @ClassName AuthenticationEntryPointImpl
  * @Author 23DAY
  * @Date 2022/9/14 22:12
@@ -27,5 +27,4 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException {
         WebUtil.render(httpServletResponse, JsonUtil.Object2String(ResponseAPI.fail(StatusCodeEnum.AUTH_NO_LOGIN)));
     }
-
 }

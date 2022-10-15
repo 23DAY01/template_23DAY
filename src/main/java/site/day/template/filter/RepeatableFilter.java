@@ -8,42 +8,68 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
+import org.springframework.web.filter.OncePerRequestFilter;
 import site.day.template.constant.CommonConst;
 import site.day.template.constant.WebConst;
 import site.day.template.utils.StringUtil;
 
 
 /**
- * @Description 用户权限管理
+ * @Description 可重复使用的InputStream
  * @ClassName RepeatableFilter
  * @Author 23DAY
  * @Date 2022/9/14 22:12
  * @Version 1.0
  */
-public class RepeatableFilter implements Filter {
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-    }
+public class RepeatableFilter extends OncePerRequestFilter {
+//    @Override
+//    public void init(FilterConfig filterConfig) throws ServletException {
+//    }
+
+//    @Override
+//    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+//            throws IOException, ServletException {
+//
+//        System.out.println("2222222222222222");
+//
+//        ServletRequest requestWrapper = null;
+//        if (request instanceof HttpServletRequest && StringUtil.startsWithIgnoreCase(request.getContentType(), MediaType.APPLICATION_JSON_VALUE)) {
+//            requestWrapper = new BodyReaderRequestWrapper((HttpServletRequest) request);
+//            response.setCharacterEncoding(WebConst.CODE.UTF8);
+//        }
+//        if (null == requestWrapper) {
+//            chain.doFilter(request, response);
+//        } else {
+//            chain.doFilter(requestWrapper, response);
+//        }
+//    }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
+        System.out.println(request.getSession().getMaxInactiveInterval());
+        System.out.println(request.getSession().getLastAccessedTime());
+        System.out.println(request.getSession().getCreationTime());
+        System.out.println(request.getSession().getId());
+
+
         ServletRequest requestWrapper = null;
         if (request instanceof HttpServletRequest && StringUtil.startsWithIgnoreCase(request.getContentType(), MediaType.APPLICATION_JSON_VALUE)) {
             requestWrapper = new BodyReaderRequestWrapper((HttpServletRequest) request);
             response.setCharacterEncoding(WebConst.CODE.UTF8);
         }
         if (null == requestWrapper) {
-            chain.doFilter(request, response);
+            filterChain.doFilter(request, response);
         } else {
-            chain.doFilter(requestWrapper, response);
+            filterChain.doFilter(requestWrapper, response);
         }
     }
 
-    @Override
-    public void destroy() {
-    }
+//    @Override
+//    public void destroy() {
+//    }
 }

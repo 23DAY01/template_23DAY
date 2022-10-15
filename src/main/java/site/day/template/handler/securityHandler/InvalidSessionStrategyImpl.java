@@ -17,8 +17,7 @@ public class InvalidSessionStrategyImpl implements InvalidSessionStrategy {
  
     @Override
     public void onInvalidSessionDetected(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        这里用户未登录也算做session过期  有点不合适
-        WebUtil.render(response,JsonUtil.Object2String(ResponseAPI.fail(StatusCodeEnum.AUTH_NO_LOGIN)));
+        WebUtil.render(response,JsonUtil.Object2String(ResponseAPI.fail(StatusCodeEnum.AUTH_SESSION_TIMEOUT)));
     }
  
 }

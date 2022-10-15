@@ -69,4 +69,27 @@ public class StringUtil {
     public static String trimToEmpty(String str) {
         return str == null ? "" : str.trim();
     }
+
+    /**
+     * @Description 截取某个字符串之前的字符
+     * @Author 23DAY
+     * @Date 2022/10/14 17:11
+     * @Param [java.lang.String, java.lang.String]
+     * @return java.lang.String
+     **/
+    public static String substringBeforeLast(String str, String separator) {
+        return StrUtil.subBefore(str,separator,true);
+    }
+
+    /**
+     * @Description 截取某个字符串之前的字符
+     * @Author 23DAY
+     * @Date 2022/10/14 17:11
+     * @Param [java.lang.String, java.lang.String]
+     * @return java.lang.String
+     **/
+    public static String substringBefore(String str, String separator) {
+        return StrUtil.subBefore(str,separator,false);
+    }
+
 }

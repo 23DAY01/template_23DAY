@@ -29,14 +29,8 @@ public class BusinessException extends RuntimeException {
         businessException.message =message;
         return businessException;
     }
-    public static BusinessException withErrorClientEnum(StatusCodeEnum errorEnum) {
-        BusinessException businessException = new BusinessException();
-        businessException.code = errorEnum.getCode();
-        businessException.message =errorEnum.getMessage();
-        return businessException;
-    }
 
-    public static BusinessException withErrorServerEnum(StatusCodeEnum errorEnum) {
+    public static BusinessException withErrorCodeEnum(StatusCodeEnum errorEnum) {
         BusinessException businessException = new BusinessException();
         businessException.code = errorEnum.getCode();
         businessException.message =errorEnum.getMessage();

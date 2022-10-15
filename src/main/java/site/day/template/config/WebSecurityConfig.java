@@ -1,9 +1,16 @@
 package site.day.template.config;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
+import org.springframework.security.web.authentication.session.*;
 import site.day.template.constant.AuthConst;
+import site.day.template.filter.LoginAuthenticationFilter;
+import site.day.template.filter.RepeatableFilter;
+import site.day.template.filter.VerificationCodeFilter;
 import site.day.template.handler.securityHandler.*;
 import site.day.template.handler.securityHandler.InvalidSessionStrategyImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -12,20 +19,18 @@ import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.session.InvalidSessionStrategy;
 import org.springframework.session.security.SpringSessionBackedSessionRegistry;
-import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import site.day.template.service.impl.UserDetailsServiceImpl;
 
 import javax.annotation.Resource;
-import java.time.Duration;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -39,98 +44,166 @@ import java.util.Collections;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    //    未登录处理器
-    @Autowired
+    /**
+     * ------------------------------------------------------------------
+     * formLogin配置
+     * <p>
+     * ------------------------------------------------------------------
+     */
+
+    // 重写loadUserByUsername
+    @Resource
+    private UserDetailsServiceImpl userDetailsService;
+
+    //  证异常处理
+    @Resource
     private AuthenticationEntryPointImpl authenticationEntryPoint;
 
-    //    权限不足
-    @Autowired
+    // 授权异常处理
+    @Resource
     private AccessDeniedHandlerImpl accessDeniedHandler;
 
-    //    认证成功
-    @Autowired
+    // 认证成功处理器
+    @Resource
     @Lazy
     private AuthenticationSuccessHandlerImpl authenticationSuccessHandler;
 
-    //    认证失败
-    @Autowired
+    // 认证失败处理器
+    @Resource
     private AuthenticationFailHandlerImpl authenticationFailHandler;
 
-    //    登出成功
-    @Autowired
+    // 登出成功处理器
+    @Resource
     private LogoutSuccessHandlerImpl logoutSuccessHandler;
 
-    //    自定义的权限管理
+    // 自定义接口拦截规则
+    @Resource
+    private FilterInvocationSecurityMetadataSource filterInvocationSecurityMetadataSource;
+
+    // 自定义权限提取
+    @Resource
+    private AccessDecisionManager accessDecisionManager;
+
+    /**
+     * ------------------------------------------------------------------
+     * misc配置
+     * <p>
+     * ------------------------------------------------------------------
+     */
+
+    // 密码加密策略
+    @Resource
+    private PasswordEncoder passwordEncoder;
+
+
+    // 需要添加到自定义authenticationFilter中
     @Bean
-    public FilterInvocationSecurityMetadataSource securityMetadataSource() {
-        return new FilterInvocationSecurityMetadataSourceImpl();
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
-    //    判断用户的权限
+    // remember-me service
+    @Resource
+    private TokenBasedRememberMeServices tokenBasedRememberMeServices;
+
+    // 跨域访问
+    @Resource
+    private CorsConfigurationSource corsConfigurationSource;
+
+
+    /**
+     * ------------------------------------------------------------------
+     * diy配置
+     * <p>
+     * ------------------------------------------------------------------
+     */
+
+    // 重复使用InputStream
+    @Resource
+    private RepeatableFilter repeatableFilter;
+
+    // 自定义密码比对
+    @Resource
+    private DaoAuthenticationProviderImpl daoAuthenticationProvider;
+
+//    // 图形过滤器
+//    @Resource
+//    private VerificationCodeFilter verificationCodeFilter;
+
+    // 自定义登录过滤器
     @Bean
-    public AccessDecisionManager accessDecisionManager() {
-        return new AccessDecisionManagerImpl();
+    public LoginAuthenticationFilter LoginAuthenticationFilter() throws Exception {
+        //配置完loginFilter后 fromLogin的所有配置全部失效 应再次配置到loginFilter中
+        LoginAuthenticationFilter loginFilter = new LoginAuthenticationFilter();
+        //
+        loginFilter.setAuthenticationManager(authenticationManagerBean());
+        // 登录接口
+        loginFilter.setFilterProcessesUrl("/login");
+        // 认证成功处理器
+        loginFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler);
+        // 认证失败处理器
+        loginFilter.setAuthenticationFailureHandler(authenticationFailHandler);
+        // remember-me
+        loginFilter.setRememberMeServices(tokenBasedRememberMeServices);
+        // session
+        loginFilter.setSessionAuthenticationStrategy(compositeSessionAuthenticationStrategy);
+
+//        loginFilter.setAuthenticationDetailsSource();
+//        loginFilter.setSecurityContextRepository();
+        return loginFilter;
     }
 
-//    @Bean
-//    public SessionRegistry sessionRegistry() {
-//        return new SessionRegistryImpl();
-//    }
 
+    /**
+     * ------------------------------------------------------------------
+     * session配置
+     * <p>
+     * ------------------------------------------------------------------
+     */
+
+
+    // redis存储session 默认在jvm内存中存储
     @Resource
     @Lazy
     private SpringSessionBackedSessionRegistry<?> redisSessionRegistry;
 
-    //    可以通过监听session的创建及销毁事件，来及时的清理session记录
-    @Bean
-    public HttpSessionEventPublisher httpSessionEventPublisher() {
-        return new HttpSessionEventPublisher();
-    }
+    // 可以通过监听session的创建及销毁事件，来及时的清理session记录
+    @Resource
+    private HttpSessionEventPublisher httpSessionEventPublisher;
+
+    // session错误策略
+    @Resource
+    private InvalidSessionStrategyImpl invalidSessionStrategy;
+
+    // session过期策略
+    @Resource
+    private SessionInformationExpiredStrategyImpl sessionInformationExpiredStrategy;
+
+    // session并发策略：处理
+    @Resource
+    private SessionFixationProtectionStrategy sessionFixationProtectionStrategy;
+
+    // session并发处理策略
+    @Resource
+    private ConcurrentSessionControlAuthenticationStrategy concurrentSessionControlAuthenticationStrategy;
+
+    // session登录处理策略
+    @Resource
+    private ChangeSessionIdAuthenticationStrategy changeSessionIdAuthenticationStrategy;
+
+    // 整合session策略
+    @Resource
+    private CompositeSessionAuthenticationStrategy compositeSessionAuthenticationStrategy;
+
 
     /**
-     * 密码加密
-     *
-     * @return {@link PasswordEncoder} 加密方式
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-        return NoOpPasswordEncoder.getInstance();
-    }
-
-    @Bean
-    public InvalidSessionStrategy InvalidSessionStrategyImpl() {
-        return new InvalidSessionStrategyImpl();
-    }
-
-
-    //    跨域访问
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowCredentials(true);
-        configuration.setAllowedOrigins(Collections.singletonList("*"));
-        configuration.setAllowedMethods(Collections.singletonList("*"));
-        configuration.setAllowedHeaders(Collections.singletonList("*"));
-        configuration.setMaxAge(Duration.ofHours(1));
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
-
-
-//    @Bean
-//    @Override
-//    public AuthenticationManager authenticationManagerBean() throws Exception {
-//        return super.authenticationManagerBean();
-//    }
-
-    /**
-     * 配置权限
-     *
-     * @param http http
-     * @throws Exception 异常
-     */
+     * @Description 配置权限
+     * 在这里的配置都会被配置到usernamePasswordFilter中 所以如果重写了该Filter就需要自行注入formLogin和session
+     * @Author 23DAY
+     * @Date 2022/10/14 20:53
+     * @Param [org.springframework.security.config.annotation.web.builders.HttpSecurity]
+     **/
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // 配置登录注销路径与处理器
@@ -141,8 +214,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login")
                 //验证成功与失败处理器
                 .successHandler(authenticationSuccessHandler)
-                .failureHandler(authenticationFailHandler)
-                .and()
+                .failureHandler(authenticationFailHandler).and()
 
 
 //                登出
@@ -159,43 +231,40 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 配置路由权限信息
         http
-//                自配置认证规则
+//                自配置认证规则：动态权限
                 .authorizeRequests()
                 .withObjectPostProcessor(
                         new ObjectPostProcessor<FilterSecurityInterceptor>() {
                             @Override
                             public <O extends FilterSecurityInterceptor> O postProcess(O fsi) {
-                                fsi.setSecurityMetadataSource(securityMetadataSource());
-                                fsi.setAccessDecisionManager(accessDecisionManager());
+                                fsi.setSecurityMetadataSource(filterInvocationSecurityMetadataSource);
+                                fsi.setAccessDecisionManager(accessDecisionManager);
                                 return fsi;
                             }
                         })
                 //对于所有url都放行，在accessDecisionManager中进行认证
-                .anyRequest().permitAll()
-                .and()
+                .anyRequest().permitAll().and()
 
 
 //                记住我功能
                 .rememberMe()
                 .key(AuthConst.REMEMBER_ME_KEY)
-                .tokenValiditySeconds(AuthConst.TOKEN_VALIDITY_SECONDS)
-                .and()
+                .userDetailsService(userDetailsService)
+                .tokenValiditySeconds(AuthConst.TOKEN_VALIDITY_SECONDS).and()
 
 //                springSecurity的跨域配置
                 .cors()
-                .configurationSource(corsConfigurationSource())
-                .and()
+                .configurationSource(corsConfigurationSource).and()
 
 //                关闭跨站请求防护
-                .csrf().disable().exceptionHandling()
+                .csrf().disable()
 
-//                未登录处理
+//                异常处理
+                .exceptionHandling()
+//                认证异常处理
                 .authenticationEntryPoint(authenticationEntryPoint)
-
-//                权限不足处理
-                .accessDeniedHandler(accessDeniedHandler)
-                .and()
-
+//                授权异常处理
+                .accessDeniedHandler(accessDeniedHandler).and()
 
 //                session配置
                 .sessionManagement()
@@ -204,20 +273,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //migrateSession: 默认策略，用户登录后创建一个新的session，并将旧session中的数据复制过来；
                 //changeSessionId: 表示 session 不变，不会创建新的session，但是会修改 sessionId，内部使用由Servlet容器提供的会话固定保护。
                 .sessionFixation()
-                .migrateSession()
+                .changeSessionId()
                 //session过期策略
-                .invalidSessionStrategy(InvalidSessionStrategyImpl())
-                //
-                .maximumSessions(5)
+                .invalidSessionStrategy(invalidSessionStrategy)
+                //session并发
+                .maximumSessions(1)
+                .expiredSessionStrategy(sessionInformationExpiredStrategy)
                 //session集群会话处理
                 .sessionRegistry(redisSessionRegistry);
 
 
 //        添加过滤器
-        //将过滤器添加在UsernamePasswordAuthenticationFilter之前
-//        http
-////                图形验证码
-//                .addFilterBefore(new VerificationCodeFilter(), UsernamePasswordAuthenticationFilter.class);
+        http
+//                // 自定义登录过滤器
+                .addFilterAt(LoginAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                // 图形验证码
+                //.addFilterBefore(new VerificationCodeFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+
 
 }

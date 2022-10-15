@@ -44,7 +44,7 @@ public class LocalUploadStrategyImpl extends AbstractUploadStrategyImpl {
         File directory = new File(localPath + path);
         if (!directory.exists()) {
             if (!directory.mkdirs()) {
-                throw BusinessException.withErrorServerEnum(StatusCodeEnum.FILE_UPLOAD_ERROR);
+                throw BusinessException.withErrorCodeEnum(StatusCodeEnum.FILE_UPLOAD_ERROR);
             }
         }
         // 写入文件

@@ -28,5 +28,4 @@ public class AuthenticationFailHandlerImpl implements AuthenticationFailureHandl
 //        WebUtil.render(httpServletResponse, JsonUtil.Object2String(ResponseAPI.fail(StatusCode.CLIENT.AUTH_UorP_ERROR.getCode())));
         WebUtil.render(httpServletResponse, JsonUtil.Object2String(ResponseAPI.fail(StatusCodeEnum.getStatusCodeEnum(e.getMessage()))));
     }
-
 }

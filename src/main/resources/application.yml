@@ -1,3 +1,13 @@
+23DAY:
+  template:
+    version: 1.0
+    author: 23DAY
+    name: template_23DAY
+    copyrightYear: 2022
+    github: https://github.com/23DAY01
+    email: 1405189521@qq.com
+
+
 spring:
   profiles:
     active: dev

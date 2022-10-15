@@ -39,7 +39,7 @@ public abstract class AbstractUploadStrategyImpl implements UploadStrategy {
             return getFileAccessUrl(uploadPath);
         } catch (Exception e) {
             e.printStackTrace();
-            throw BusinessException.withErrorServerEnum(StatusCodeEnum.FILE_UPLOAD_ERROR);
+            throw BusinessException.withErrorCodeEnum(StatusCodeEnum.FILE_UPLOAD_ERROR);
         }
     }
 
@@ -53,7 +53,7 @@ public abstract class AbstractUploadStrategyImpl implements UploadStrategy {
             return getFileAccessUrl(uploadPath);
         } catch (Exception e) {
             e.printStackTrace();
-            throw BusinessException.withErrorServerEnum(StatusCodeEnum.FILE_UPLOAD_ERROR);
+            throw BusinessException.withErrorCodeEnum(StatusCodeEnum.FILE_UPLOAD_ERROR);
         }
     }
 

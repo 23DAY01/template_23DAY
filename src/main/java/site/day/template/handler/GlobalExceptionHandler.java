@@ -1,5 +1,6 @@
 package site.day.template.handler;
 
+import org.springframework.security.authentication.BadCredentialsException;
 import site.day.template.enums.StatusCodeEnum;
 import site.day.template.exception.BusinessException;
 import site.day.template.utils.ResponseAPI;
@@ -38,6 +39,12 @@ public class GlobalExceptionHandler {
         return ResponseAPI.fail(e.getCode(), e.getMessage());
     }
 
+
+//    @ExceptionHandler(value = BadCredentialsException.class)
+//    public ResponseAPI<?> BadCredentialsExceptionHandler(BadCredentialsException badCredentialsException) {
+//        log.error("密码错误:{}" , badCredentialsException.getMessage());
+//        return ResponseAPI.fail(StatusCodeEnum.AUTH_FAIL);
+//    }
 
     /**
      * @return site.day.template.utils.ResponseAPI<?>

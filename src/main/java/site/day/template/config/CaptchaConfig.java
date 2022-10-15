@@ -19,7 +19,7 @@ import java.util.Properties;
 public class CaptchaConfig {
 
     @Bean
-    public Producer captcha() {
+    public Producer captchaProducer() {
         // 配置图形验证码的基本参数
         Properties properties = new Properties();
         // 图片宽度

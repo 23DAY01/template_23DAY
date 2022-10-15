@@ -1,7 +1,6 @@
 package site.day.template.config;
 
 
-
 import site.day.template.interceptor.ApiAccessRestrictionInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,11 +26,17 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public RepeatSubmitInterceptor RepeatSubmitInterceptor(){
+    public RepeatSubmitInterceptor RepeatSubmitInterceptor() {
         return new RepeatSubmitInterceptor();
     }
 
-//    解决跨域问题  在添加了springSecurity就不生效了
+    /**
+     * @return void
+     * @Description 解决跨域问题  在添加了springSecurity就不生效了
+     * @Author 23DAY
+     * @Date 2022/10/14 20:49
+     * @Param [org.springframework.web.servlet.config.annotation.CorsRegistry]
+     **/
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
@@ -41,16 +46,30 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedMethods("*");
     }
 
-//    注册关于api访问限制的拦截器
+
+    /**
+     * @return void
+     * @Description 注册关于api访问限制的拦截器
+     * @Author 23DAY
+     * @Date 2022/10/14 20:48
+     * @Param [org.springframework.web.servlet.config.annotation.InterceptorRegistry]
+     **/
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(RepeatSubmitInterceptor());
         registry.addInterceptor(ApiAccessRestrictionInterceptor());
     }
 
+    /**
+     * @Description 资源处理器
+     * @Author 23DAY
+     * @Date 2022/10/14 20:49
+     * @Param [org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry]
+     * @return void
+     **/
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        knife4j
+        //  knife4j
         registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
