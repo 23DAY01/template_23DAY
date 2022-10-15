@@ -2,10 +2,7 @@ package site.day.template.pojo.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -18,8 +15,7 @@ import java.time.LocalDateTime;
  * @Date 2022/10/12 15:30
  * @Version 1.0
  */
-@Getter
-@Setter
+@Data
 @Accessors(chain = true)
 @ApiModel(value = "UserAuthDto对象", description = "")
 @ToString

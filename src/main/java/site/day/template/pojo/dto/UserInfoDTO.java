@@ -15,12 +15,10 @@ import java.io.Serializable;
  * @author 23DAY
  * @since 2022-09-16
  */
-@Getter
-@Setter
+@Data
 @Builder
 @Accessors(chain = true)
 @ApiModel(value = "用户详细信息", description = "")
-@ToString
 public class UserInfoDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;

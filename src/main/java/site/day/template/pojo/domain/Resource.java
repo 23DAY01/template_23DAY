@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -21,8 +22,7 @@ import lombok.experimental.Accessors;
  * @author 23DAY
  * @since 2022-10-13
  */
-@Getter
-@Setter
+@Data
 @Accessors(chain = true)
 @TableName("day_resource")
 @ApiModel(value = "Resource对象", description = "")

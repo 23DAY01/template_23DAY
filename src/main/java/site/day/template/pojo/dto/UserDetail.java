@@ -19,8 +19,7 @@ import java.util.stream.Collectors;
 import static site.day.template.constant.CommonConst.FALSE;
 
 
-@Getter
-@Setter
+@Data
 @Accessors(chain = true)
 @ApiModel(value = "UserDetail", description = "")
 public class UserDetail implements UserDetails, Serializable {
