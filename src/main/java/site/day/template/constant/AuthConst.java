@@ -49,14 +49,18 @@ public class AuthConst {
         String AUTH_PERMISSION_DENIED = "缺少权限";
         String AUTH_UorP_ERROR = "账号不存在或密码错误";
         String AUTH_USERNAME_EMPTY = "用户名为空";
-        String AUTH_USERNAME_MISSING = "账号不存在";
+        String AUTH_USERNAME_NOT_FOUND = "账号不存在";
         String AUTH_FAIL = "认证失败";
         String AUTH_CODE_ERROR = "校验码错误";
         String AUTH_CODE_MISSING = "校验码为空";
         String AUTH_SESSION_TIMEOUT = "session过期";
-        String AUTH_ACCOUNT_LOCKED = "用户帐号已被锁定";
         String AUTH_METHOD_NOT_AVAILABLE = "访问登录接口方法错误";
         String AUTH_SESSION_CONCURRENCE_MAX = "账号已在别处登录";
+        String AUTH_USER_ACCOUNT_LOCKED = "用户帐号已被锁定";
+        String AUTH_USER_ACCOUNT_DISABLED = "用户账号不可用";
+        String AUTH_USER_ACCOUNT_EXPIRED = "用户账号已过期";
+        String AUTH_USER_CREDENTIALS_EXPIRED = "用户账号密码过期";
+        String AUTH_BAD_CREDENTIAL = "Bad credentials";
 
 
         //        api错误
@@ -89,6 +93,5 @@ public class AuthConst {
 
         //        未知错误
         String UNKNOWN_SERVER_ERROR = "服务器未知错误";
-
     }
 }

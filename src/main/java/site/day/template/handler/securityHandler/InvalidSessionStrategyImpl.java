@@ -1,6 +1,7 @@
 package site.day.template.handler.securityHandler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.springframework.stereotype.Component;
 import site.day.template.enums.StatusCodeEnum;
 import site.day.template.utils.JsonUtil;
 import site.day.template.utils.ResponseAPI;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
+@Component
 public class InvalidSessionStrategyImpl implements InvalidSessionStrategy {
  
     @Override

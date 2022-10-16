@@ -2,6 +2,9 @@ package site.day.template.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.parameters.P;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import site.day.template.enums.StatusCodeEnum;
 import site.day.template.exception.BusinessException;
 import site.day.template.mapper.UserAuthMapper;
@@ -59,14 +62,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) {
 //        用户名不能为空
-        if (StringUtils.isBlank(username)) {
-            throw BusinessException.withErrorMessage(StatusCodeEnum.AUTH_USERNAME_EMPTY.getMessage());
-        }
+//        if(username.isEmpty()){
+//            throw new BadCredentialsException(StatusCodeEnum.AUTH_USERNAME_EMPTY.getMessage());
+//        }
+        username = username != null ? username.trim() : "";
         // 查询账号是否存在
         UserAuth userAuth = userAuthMapper.selectOne(new LambdaQueryWrapper<UserAuth>()
                 .eq(UserAuth::getUsername, username));
         if (Objects.isNull(userAuth)) {
-            throw BusinessException.withErrorMessage(StatusCodeEnum.AUTH_USERNAME_MISSING.getMessage());
+            // 这里springSecurity的逻辑有点不合适 因为要隐藏usernameNotFound异常所以抛出了一个badCredential异常 但是对于这个异常的处理必须打印log于是很麻烦
+            throw new UsernameNotFoundException(StatusCodeEnum.AUTH_UorP_ERROR.getMessage());
         }
         // 封装登录信息
         return convertUserDetail(userAuth, request);

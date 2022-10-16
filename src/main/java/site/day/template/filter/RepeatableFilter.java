@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 import site.day.template.constant.CommonConst;
@@ -25,6 +26,7 @@ import site.day.template.utils.StringUtil;
  * @Date 2022/9/14 22:12
  * @Version 1.0
  */
+@Component
 public class RepeatableFilter extends OncePerRequestFilter {
 //    @Override
 //    public void init(FilterConfig filterConfig) throws ServletException {
@@ -51,10 +53,10 @@ public class RepeatableFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        System.out.println(request.getSession().getMaxInactiveInterval());
-        System.out.println(request.getSession().getLastAccessedTime());
-        System.out.println(request.getSession().getCreationTime());
-        System.out.println(request.getSession().getId());
+//        System.out.println(request.getSession().getMaxInactiveInterval());
+//        System.out.println(request.getSession().getLastAccessedTime());
+//        System.out.println(request.getSession().getCreationTime());
+//        System.out.println(request.getSession().getId());
 
 
         ServletRequest requestWrapper = null;

@@ -1,10 +1,12 @@
 package site.day.template.config;
 
+import org.apache.lucene.index.PostingsEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.access.AccessDecisionManager;
+import org.springframework.security.core.userdetails.UserDetailsChecker;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
@@ -23,13 +25,14 @@ import site.day.template.handler.securityHandler.*;
 import site.day.template.service.impl.UserDetailsServiceImpl;
 
 import javax.annotation.Resource;
+import javax.swing.text.AbstractDocument;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * @Description
+ * @Description 生成security config中使用的Bean
  * @ClassName SecurityBeanCreateConfig
  * @Author 23DAY
  * @Date 2022/10/15 17:31
@@ -104,19 +107,21 @@ public class SecurityBeanCreateConfig {
      * ------------------------------------------------------------------
      */
 
-    // 重复使用InputStream
-    @Bean
-    public RepeatableFilter repeatableFilter() {
-        return new RepeatableFilter();
-    }
+    @Resource
+    private UserDetailsChecker preAuthenticationChecks;
 
-
+    @Resource
+    private UserDetailsChecker postAuthenticationChecks;
 
     // 自定义密码比对
     @Bean
     public DaoAuthenticationProviderImpl daoAuthenticationProvider() {
         DaoAuthenticationProviderImpl daoAuthenticationProviderImpl = new DaoAuthenticationProviderImpl();
         daoAuthenticationProviderImpl.setUserDetailsService(userDetailsService);
+
+        // 自定义用户账户信息检测：账户过期、账户被禁用等
+        daoAuthenticationProviderImpl.setPreAuthenticationChecks(preAuthenticationChecks);
+        daoAuthenticationProviderImpl.setPostAuthenticationChecks(postAuthenticationChecks);
         return daoAuthenticationProviderImpl;
     }
 
@@ -149,13 +154,8 @@ public class SecurityBeanCreateConfig {
     public SessionInformationExpiredStrategyImpl sessionInformationExpiredStrategy() {
         return new SessionInformationExpiredStrategyImpl();
     }
-    // session并发策略：处理
-    @Bean
-    public SessionFixationProtectionStrategy sessionFixationProtectionStrategy() {
-        return new SessionFixationProtectionStrategy();
-    }
 
-    // session并发策略：
+    // session并发策略
     @Bean
     public ConcurrentSessionControlAuthenticationStrategy concurrentSessionControlAuthenticationStrategy() {
         ConcurrentSessionControlAuthenticationStrategy strategy = new ConcurrentSessionControlAuthenticationStrategy(redisSessionRegistry);
@@ -163,13 +163,19 @@ public class SecurityBeanCreateConfig {
         return strategy;
     }
 
+
     /*
-        none: 该策略对会话不做任何变动，登录之后会沿用旧的session;
-        newSession: 用户登录后会创建一个新的session；
-        migrateSession: 默认策略，用户登录后创建一个新的session，并将旧session中的数据复制过来；
-        changeSessionId: 表示 session 不变，不会创建新的session，但是会修改 sessionId，内部使用由Servlet容器提供的会话固定保护。
+        none: NullAuthenticatedSessionStrategy: 该策略对会话不做任何变动，登录之后会沿用旧的session;
+        newSession: RegisterSessionAuthenticationStrategy: 用户登录后会创建一个新的session；
+        migrateSession: SessionFixationProtectionStrategy: 默认策略，用户登录后创建一个新的session，并将旧session中的数据复制过来；
+        changeSessionId: ChangeSessionIdAuthenticationStrategy: 表示 session 不变，不会创建新的session，但是会修改 sessionId，内部使用由Servlet容器提供的会话固定保护。
     */
-    // session登录后只修改id策略
+    // AbstractSessionFixationProtectionStrategy 是 SessionFixationProtectionStrategy和ChangeSessionIdAuthenticationStrategy的父类，用来防御session fixation攻击。
+    // session登录策略
+    @Bean
+    public SessionFixationProtectionStrategy sessionFixationProtectionStrategy() {
+        return new SessionFixationProtectionStrategy();
+    }
     @Bean
     public ChangeSessionIdAuthenticationStrategy changeSessionIdAuthenticationStrategy() {
         return new ChangeSessionIdAuthenticationStrategy();

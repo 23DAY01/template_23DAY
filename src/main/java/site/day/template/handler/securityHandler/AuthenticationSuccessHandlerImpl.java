@@ -43,11 +43,11 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
         UserDetail loginUser = AuthUtil.getLoginUser();
         //更新用户ip，最近登录时间
         updateUserInfo();
-
-        System.out.println(httpServletRequest.getSession().getMaxInactiveInterval());
-        System.out.println(httpServletRequest.getSession().getLastAccessedTime());
-        System.out.println(httpServletRequest.getSession().getCreationTime());
-        System.out.println(httpServletRequest.getSession().getId());
+//
+//        System.out.println(httpServletRequest.getSession().getMaxInactiveInterval());
+//        System.out.println(httpServletRequest.getSession().getLastAccessedTime());
+//        System.out.println(httpServletRequest.getSession().getCreationTime());
+//        System.out.println(httpServletRequest.getSession().getId());
 
         WebUtil.render(httpServletResponse, JsonUtil.Object2String(ResponseAPI.success(loginUser.getUserInfoDTO())));
     }

@@ -18,6 +18,7 @@ import java.io.IOException;
  * @Date 2022/10/14 22:34
  * @Version 1.0
  */
+@Component
 public class SessionInformationExpiredStrategyImpl implements SessionInformationExpiredStrategy {
     @Override
     public void onExpiredSessionDetected(SessionInformationExpiredEvent event) throws IOException, ServletException {

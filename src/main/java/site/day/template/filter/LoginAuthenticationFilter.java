@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 
-    @SneakyThrows
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         if (!request.getMethod().equals("POST")) {
@@ -25,7 +24,7 @@ public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFil
             String username = this.obtainUsername(request);
             username = username != null ? username.trim() : "";
             String password = this.obtainPassword(request);
-            password = password != null ? password : "";
+//            password = password != null ? password : "";
             UsernamePasswordAuthenticationToken authRequest = UsernamePasswordAuthenticationToken.unauthenticated(username, password);
             this.setDetails(request, authRequest);
             return this.getAuthenticationManager().authenticate(authRequest);
