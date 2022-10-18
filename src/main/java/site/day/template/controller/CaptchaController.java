@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import site.day.template.constant.AuthConst;
 import site.day.template.constant.WebConst;
+import site.day.template.utils.RedisUtil;
 import site.day.template.utils.ResponseAPI;
 
 import javax.annotation.Resource;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Description 图片验证码
@@ -29,6 +31,8 @@ public class CaptchaController {
 
     @Autowired
     private Producer captchaProducer;
+
+
     /**
      * @Description 返回图片验证码
      * @Author 23DAY
@@ -36,7 +40,7 @@ public class CaptchaController {
      * @Param [javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse]
      **/
     @GetMapping("/captcha")
-    public void getCaptcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public ResponseAPI<?> getCaptcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // 设置内容类型
         response.setContentType(WebConst.HEADER.CONTENT_TYPE_IMAGE);
         // 创建验证码文本
@@ -58,6 +62,6 @@ public class CaptchaController {
         } finally {
             out.close();
         }
+        return ResponseAPI.success();
     }
-
 }

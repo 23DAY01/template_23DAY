@@ -1,8 +1,8 @@
 server:
-  port: 8080
+  port: ***
   servlet:
     session:
-      timeout: 30m
+      timeout: 60
 
 spring:
   datasource:
@@ -13,9 +13,9 @@ spring:
       #监控统计拦截的filters
       filters: stat
       #基本属性
-      username:
-      password:
-      url:
+      username: ***
+      password: ***
+      url: jdbc:mysql://localhost:3306/***?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true
       driver-class-name: com.mysql.cj.jdbc.Driver
       #配置初始化大小/最小/最大
       initial-size: 1
@@ -67,8 +67,8 @@ spring:
       ALLOW_SINGLE_QUOTES: true # 是否允许出现单引号,默认false
 
   redis:
-    host:
-    port:
+    host: ***
+    port: ***
     lettuce:
       pool:
         #连接池中的最小空闲连接
@@ -86,7 +86,6 @@ spring:
     type: redis
 
 
-
   # 禁止浏览器访问静态资源
   web:
     resources:
@@ -100,19 +99,41 @@ spring:
 
 logging:
   level:
-    com.example.demo1.controller: info
+    site.day.template.controller: warn
   file:
-    path: "./logs"
+    path: ***
 
 
 mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #  configuration:
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
       logic-delete-field: deleted # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
       logic-delete-value: 1 # 逻辑已删除值(默认为 1)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+      table-prefix: "day_"
 
+qiniu:
+  # 密钥
+  accessKey: "***"
+  secretKey: "***"
+  # 空间名称
+  bucket: "***"
+  # 七牛云提供的测试域名
+  url: "***"
 
-
+# 上传模式 可选 oss或local  http://和最后的/不能去
+upload:
+  mode: oss
+  local:
+    # nginx映射本地文件路径，无域名则为 ip:83
+    url: ***
+    # 本地文件存储路径
+    path: ***
+  oss:
+    url: ***
+    endpoint: ***
+    accessKeyId: ***
+    accessKeySecret: ***
+    bucketName: ***

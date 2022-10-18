@@ -1,12 +1,17 @@
 package site.day.template.utils;
 
+import cn.hutool.core.convert.Convert;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import site.day.template.constant.WebConst;
 import eu.bitwalker.useragentutils.UserAgent;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -146,6 +151,93 @@ public class WebUtil {
         }
         reader.close();
         return sb.toString();
+    }
+
+
+    /**
+     * @Description 获取url
+     * @Author 23DAY
+     * @Date 2022/10/18 17:30
+     * @Param []
+     * @return java.lang.String
+     **/
+    public String getUrl() {
+        HttpServletRequest request = getRequest();
+        return getDomain(request);
+    }
+
+    public static String getDomain(HttpServletRequest request) {
+        StringBuffer url = request.getRequestURL();
+        String contextPath = request.getServletContext().getContextPath();
+        return url.delete(url.length() - request.getRequestURI().length(), url.length()).append(contextPath).toString();
+    }
+
+    /**
+     * 获取String参数
+     */
+    public static String getParameter(String name) {
+        return getRequest().getParameter(name);
+    }
+
+    /**
+     * 获取String参数
+     */
+    public static String getParameter(String name, String defaultValue) {
+        return ConvertUtil.toStr(getRequest().getParameter(name), defaultValue);
+    }
+
+    /**
+     * 获取Integer参数
+     */
+    public static Integer getParameterToInt(String name) {
+        return ConvertUtil.toInt(getRequest().getParameter(name));
+    }
+
+    /**
+     * 获取Integer参数
+     */
+    public static Integer getParameterToInt(String name, Integer defaultValue) {
+        return ConvertUtil.toInt(getRequest().getParameter(name), defaultValue);
+    }
+
+    /**
+     * 获取Boolean参数
+     */
+    public static Boolean getParameterToBool(String name) {
+        return ConvertUtil.toBool(getRequest().getParameter(name));
+    }
+
+    /**
+     * 获取Boolean参数
+     */
+    public static Boolean getParameterToBool(String name, Boolean defaultValue) {
+        return ConvertUtil.toBool(getRequest().getParameter(name), defaultValue);
+    }
+
+    /**
+     * 获取request
+     */
+    public static HttpServletRequest getRequest() {
+        return getRequestAttributes().getRequest();
+    }
+
+    /**
+     * 获取response
+     */
+    public static HttpServletResponse getResponse() {
+        return getRequestAttributes().getResponse();
+    }
+
+    /**
+     * 获取session
+     */
+    public static HttpSession getSession() {
+        return getRequest().getSession();
+    }
+
+    public static ServletRequestAttributes getRequestAttributes() {
+        RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
+        return (ServletRequestAttributes) attributes;
     }
 
 

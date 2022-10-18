@@ -92,10 +92,15 @@ public class SecurityBeanCreateConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
+        // 设置访问源地址
         configuration.setAllowedOrigins(Collections.singletonList("*"));
+        // 设置访问源请求方法
         configuration.setAllowedMethods(Collections.singletonList("*"));
+        // 设置访问源请求头
         configuration.setAllowedHeaders(Collections.singletonList("*"));
+        // 有效期 1h
         configuration.setMaxAge(Duration.ofHours(1));
+        // 添加映射路径，拦截一切请求
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }

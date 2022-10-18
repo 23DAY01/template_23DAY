@@ -40,12 +40,6 @@ public class GlobalExceptionHandler {
     }
 
 
-//    @ExceptionHandler(value = BadCredentialsException.class)
-//    public ResponseAPI<?> BadCredentialsExceptionHandler(BadCredentialsException badCredentialsException) {
-//        log.error("密码错误:{}" , badCredentialsException.getMessage());
-//        return ResponseAPI.fail(StatusCodeEnum.AUTH_FAIL);
-//    }
-
     /**
      * @return site.day.template.utils.ResponseAPI<?>
      * @Author 23DAY

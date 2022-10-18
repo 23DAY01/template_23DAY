@@ -10,6 +10,7 @@ import static site.day.template.constant.AuthConst.StatusMessage;
 /**
  * @Description 业务状态码
  * regex：([A-Z\w]+)\(([0-9]+),\s".+"\),
+ *          $1
  * @ClassName StatusCode
  * @Author 23DAY
  * @Date 2022/9/14 22:12
