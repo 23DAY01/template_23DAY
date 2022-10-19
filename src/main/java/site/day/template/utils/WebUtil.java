@@ -153,13 +153,32 @@ public class WebUtil {
         return sb.toString();
     }
 
+    /**
+     * 获取IP地址
+     *
+     * @return 本地IP地址
+     */
+    public static String getHostIp() throws UnknownHostException {
+        return InetAddress.getLocalHost().getHostAddress();
+    }
 
     /**
+     * 获取主机名
+     *
+     * @return 本地主机名
+     */
+    public static String getHostName() throws UnknownHostException {
+        return InetAddress.getLocalHost().getHostName();
+
+    }
+
+
+    /**
+     * @return java.lang.String
      * @Description 获取url
      * @Author 23DAY
      * @Date 2022/10/18 17:30
      * @Param []
-     * @return java.lang.String
      **/
     public String getUrl() {
         HttpServletRequest request = getRequest();

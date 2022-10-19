@@ -22,15 +22,16 @@ public enum StatusCodeEnum {
 
 
     SUCCESS(2000101, StatusMessage.SUCCESS),
-    UNKNOWN_ERROR(2009901, StatusMessage.UNKNOWN_ERROR),
+    UNKNOWN_RUNTIME_ERROR(4009901, StatusMessage.UNKNOWN_RUNTIME_ERROR),
+    UNKNOWN_SYSTEM_ERROR(4009902,StatusMessage.UNKNOWN_SYSTEM_ERROR),
 
     /**
      * Client
      **/
     //        参数错误
-    PARAM_MISSING(4000101, StatusMessage.PARAM_MISSING),
-    PARAM_TYPE_ERROR(4000102, StatusMessage.PARAM_TYPE_ERROR),
-    PARAM_NOT_VALID(4000103, StatusMessage.PARAM_NOT_VALID),
+    ACCESS_PARAM_MISSING(4000101, StatusMessage.ACCESS_PARAM_MISSING),
+    ACCESS_PARAM_TYPE_ERROR(4000102, StatusMessage.ACCESS_PARAM_TYPE_ERROR),
+    ACCESS_PARAM_NOT_VALID(4000103, StatusMessage.ACCESS_PARAM_NOT_VALID),
 
 
     //        文件错误
@@ -59,9 +60,8 @@ public enum StatusCodeEnum {
     //        api错误
     API_ACCESS_FREQUENT(4000401, StatusMessage.API_ACCESS_FREQUENT),
     API_REPEAT_SUBMIT(4000402, StatusMessage.API_REPEAT_SUBMIT),
+    API_ACCESS_METHOD_ERROR(4000403,StatusMessage.API_ACCESS_METHOD_ERROR),
 
-    //        未知错误
-    UNKNOWN_CLIENT_ERROR(4009901, StatusMessage.UNKNOWN_CLIENT_ERROR),
 
 
     /**
@@ -76,12 +76,7 @@ public enum StatusCodeEnum {
 
     //      数据库错误
     SQL_ERROR(5000401, StatusMessage.SQL_ERROR),
-
-    //        redis错误
-    REDIS_CONNECTION_ERROR(5000501, StatusMessage.REDIS_CONNECTION_ERROR),
-
-    //        未知错误
-    UNKNOWN_SERVER_ERROR(5009901, StatusMessage.UNKNOWN_SERVER_ERROR);
+    REDIS_CONNECTION_ERROR(5000402, StatusMessage.REDIS_CONNECTION_ERROR);
 
 
     private final Integer code;
@@ -102,7 +97,7 @@ public enum StatusCodeEnum {
                 return value;
             }
         }
-        return UNKNOWN_ERROR;
+        return UNKNOWN_RUNTIME_ERROR;
     }
 
     /**
@@ -118,6 +113,6 @@ public enum StatusCodeEnum {
                 return value;
             }
         }
-        return UNKNOWN_ERROR;
+        return UNKNOWN_RUNTIME_ERROR;
     }
 }

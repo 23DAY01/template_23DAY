@@ -27,29 +27,29 @@ site.day.template
 ├── annotation    			    --  自定义注解
 ├── aspect        			    --  aop模块
 ├── config        			    --  配置模块
-│       └── property             --  配置属性
+│       └── property                        --  配置属性
 ├── constant      			    --  常量模块
 ├── controller    			    --  控制器模块
 ├── enums         			    --  枚举模块
 ├── exception     			    --  自定义异常模块
-├── filter     			        --  过滤器模块
+├── filter     			            --  过滤器模块
 ├── handler       			    --  处理器模块
-│       └── securityHandler      --  springSecurity处理器
-├── intercept       			--  拦截器模块
+│       └── securityHandler                 --  springSecurity处理器
+├── intercept       			    --  拦截器模块
 ├── mapper       			    --  数据库操作模块
-├── pojo       			        --  实体类模块
+├── pojo       			            --  实体类模块
 │       └── domain                 
 │       └── dto                 
 │       └── vo                 
 ├── service       			    --  服务模块
-│       └── impl                 --  服务实现类模块
+│       └── impl                            --  服务实现类模块
 ├── strategy      			    --  策略模块（用于扩展第三方登录，搜索模式，上传文件模式等策略）
 └── utils         			    --  工具类模块
 ```
 
 ## 项目介绍
 
-- aop注解，实现api限流、表单重复提交、操作日志管理
+- 利用自定义注解aop实现api限流、防止表单重复提交、操作日志管理
 - 动态权限修改，采用RBAC权限模型
 - 代码支持支持多种上传模式（OSS或本地）
 - 代码遵循阿里巴巴开发规范

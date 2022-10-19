@@ -28,15 +28,16 @@ public class AuthConst {
 
 
         String SUCCESS = "success";
-        String UNKNOWN_ERROR = "unknown_error";
+        String UNKNOWN_RUNTIME_ERROR = "运行时未知异常";
+        String UNKNOWN_SYSTEM_ERROR = "系统未知异常";
 
         /**
          * Client
          **/
         //        参数错误
-        String PARAM_MISSING = "参数缺失";
-        String PARAM_TYPE_ERROR = "参数类型错误";
-        String PARAM_NOT_VALID = "参数校验失败";
+        String ACCESS_PARAM_MISSING = "参数缺失";
+        String ACCESS_PARAM_TYPE_ERROR = "参数类型错误";
+        String ACCESS_PARAM_NOT_VALID = "参数校验失败";
 
 
         //        文件错误
@@ -66,9 +67,7 @@ public class AuthConst {
         //        api错误
         String API_ACCESS_FREQUENT = "接口访问频繁";
         String API_REPEAT_SUBMIT = "重复提交";
-
-        //        未知错误
-        String UNKNOWN_CLIENT_ERROR = "客户端未知异常";
+        String API_ACCESS_METHOD_ERROR = "接口访问方法错误";
 
 
         /**
@@ -85,13 +84,8 @@ public class AuthConst {
 
         //      数据库错误
         String SQL_ERROR = "数据库异常";
-
-
-        //        redis错误
         String REDIS_CONNECTION_ERROR = "redis连接异常";
 
 
-        //        未知错误
-        String UNKNOWN_SERVER_ERROR = "服务器未知错误";
     }
 }
