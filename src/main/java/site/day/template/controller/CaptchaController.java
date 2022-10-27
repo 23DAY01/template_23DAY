@@ -40,7 +40,7 @@ public class CaptchaController {
      * @Param [javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse]
      **/
     @GetMapping("/captcha")
-    public ResponseAPI<?> getCaptcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void getCaptcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // 设置内容类型
         response.setContentType(WebConst.HEADER.CONTENT_TYPE_IMAGE);
         // 创建验证码文本
@@ -62,6 +62,5 @@ public class CaptchaController {
         } finally {
             out.close();
         }
-        return ResponseAPI.success();
     }
 }

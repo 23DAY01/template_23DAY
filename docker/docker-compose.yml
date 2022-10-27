@@ -1,0 +1,68 @@
+version: "3.3"
+
+services:
+
+  mysql:
+    image: mysql:8
+    container_name: day_mysql
+    restart: "on-failure"
+    volumes:
+      - ./mysql/my.cnf:/etc/mysql/my.cnf:ro
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/sql:/docker-entrypoint-initdb.d
+      - ./mysql/mysql-files:/var/lib/mysql-files/
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      TZ: Asia/Shanghai
+    ports:
+      - "3307:3306"
+    networks:
+      - day_template
+
+  redis:
+    image: redis:7
+    restart: "on-failure"
+    container_name: day_redis
+    volumes:
+      - ./redis/redis.conf:/etc/redis/redis.conf:ro
+      - ./redis/logs/:/var/log/redis/
+      - ./redis/data/:/var/lib/redis/
+    ports:
+      - "6380:6379"
+    networks:
+      - day_template
+
+  nginx:
+    image: nginx
+    restart: "on-failure"
+    container_name: day_nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/vue:/var/www/template/vue
+    ports:
+      - "80:80"
+    networks:
+      - day_template
+
+  template:
+    build: web
+    container_name: day_template
+    restart: "on-failure"
+    volumes:
+      - ./web/logs/:/var/www/template/logs/
+      - ./web/upload/:/var/www/template/upload/
+    environment:
+      TZ: Asia/Shanghai
+    depends_on:
+      - mysql
+      - redis
+      - nginx
+    ports:
+      - "8080:8080"
+    networks:
+      - day_template
+
+
+networks:
+  day_template:
+    driver: bridge
