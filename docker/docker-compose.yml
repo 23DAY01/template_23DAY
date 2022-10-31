@@ -39,8 +39,10 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/vue:/var/www/template/vue
+      - ./cert:/var/www/template/cert
     ports:
       - "80:80"
+      - "443:443"
     networks:
       - day_template
 

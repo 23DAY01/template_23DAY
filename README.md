@@ -1,8 +1,9 @@
 
 ## 模板介绍
 <p align=center>
-   基于Springboot + springSecurity 的前后端分离简易开发模板
+   基于Springboot + SpringSecurity 的前后端分离简易开发模板
 </p>
+
 
 <p align="center">
    <a target="_blank" href="https://github.com/23DAY01/template_23DAY">
@@ -49,12 +50,14 @@ site.day.template
 
 ## 项目介绍
 
-- 利用自定义注解aop实现api限流、防止表单重复提交、操作日志管理
-- 动态权限修改，采用RBAC权限模型
-- 代码支持支持多种上传模式（OSS或本地）
+- 利用自定义注解aop实现api限流、防表单重复提交、操作日志管理
+- 支持动态权限修改，采用RBAC权限模型
+- 代码支持支持多种上传模式（阿里OSS、本地、七牛云等）
 - 代码遵循阿里巴巴开发规范
-- 采用自定义utils复写各类工具库，减少模板对工具库的高度依赖
-- 复写springSecurity配置，实现接口状态码的高度自定义
+- 采用自定义utils复写各类工具库，减少该模板对工具库的依赖，降低耦合性
+- 复写SpringSecurity配置，实现自定义权限管理
+- 采用docker-compose编排docker容器，一键启动
+- 
 
 ## 技术栈介绍
 
@@ -63,7 +66,7 @@ site.day.template
 - springSecurity
 - swagger
 - mybatisPlus
-- Mysql
+- mysql
 - redis
 - log4j+logback
 
@@ -82,7 +85,6 @@ site.day.template
 |JDK|1.8|
 |MySQL|8.0.20|
 |Redis|6.0.5|
-| SpringBoot | 2.7.4  |
 
 ## 项目部署
 
@@ -93,6 +95,10 @@ site.day.template
    ```
 
 2. 修改配置文件
+
+   - application-prod.yml
+
+     
 
    主要修改以下几个地方
 
