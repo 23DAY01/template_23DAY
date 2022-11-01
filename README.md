@@ -57,7 +57,6 @@ site.day.template
 - 采用自定义utils复写各类工具库，减少该模板对工具库的依赖，降低耦合性
 - 复写SpringSecurity配置，实现自定义权限管理
 - 采用docker-compose编排docker容器，一键启动
-- 
 
 ## 技术栈介绍
 
@@ -98,15 +97,14 @@ site.day.template
 
    - application-prod.yml
 
-     
-
+   
    主要修改以下几个地方
-
+   
    - port
    - oss配置
    - 数据库配置（redis、mysql
    - 日志配置
-
+   
 3. docker配置
 
    修改docker-compose和DockerFile
@@ -115,4 +113,4 @@ site.day.template
 
 ## 项目总结
 
-该模板可以作为小型项目的建议开发模板，也可以用作新手入门学习。模板难点在于对SpringSecurity的自定义。
+该模板可以作为小型项目的建议开发模板，也可以用作新手入门学习。模板难点在于对SpringSecurity的自定义和使用Interceptor进行接口限流、操作日志。
