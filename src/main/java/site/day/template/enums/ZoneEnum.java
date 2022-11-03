@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * @Description 地区常量
+ * @Description 地区枚举
  * @ClassName ZoneEnum
  * @Author 23DAY
  * @Date 2022/9/15 20:34

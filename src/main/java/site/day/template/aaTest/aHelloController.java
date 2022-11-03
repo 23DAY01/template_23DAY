@@ -9,6 +9,8 @@ import site.day.template.annotation.AccessLimit;
 import site.day.template.annotation.OptLog;
 import site.day.template.annotation.RepeatSubmit;
 import site.day.template.constant.OptTypeConst;
+import site.day.template.enums.StatusCodeEnum;
+import site.day.template.exception.BusinessException;
 import site.day.template.utils.ResponseAPI;
 
 /**
@@ -43,6 +45,7 @@ public class aHelloController {
 
     @GetMapping("/hello3")
     public ResponseAPI<?> hello3() {
-        return ResponseAPI.success("hello");
+        throw BusinessException.withErrorCodeEnum(StatusCodeEnum.AUTH_FAIL);
+//        return ResponseAPI.success("hello");
     }
 }

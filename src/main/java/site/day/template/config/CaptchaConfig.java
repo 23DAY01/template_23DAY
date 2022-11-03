@@ -13,7 +13,7 @@ import java.util.Random;
 import static com.google.code.kaptcha.Constants.*;
 
 /**
- * @Description 图形验证码
+ * @Description 图形验证码配置
  * @ClassName CaptchaConfig
  * @Author 23DAY
  * @Date 2022/9/18 14:46

@@ -1,9 +1,14 @@
-
 ## 模板介绍
+
+<p align=center>
+  <a href="https://www.blog.23day.site">
+    <img src="https://static.23day.site/config/1e21dd23d2d32d3.png" alt="23DAY简易开发模板" style="border-radius: 50%" weight="250px" height="250px">
+  </a>
+</p>
+
 <p align=center>
    基于Springboot + SpringSecurity 的前后端分离简易开发模板
 </p>
-
 
 <p align="center">
    <a target="_blank" href="https://github.com/23DAY01/template_23DAY">
@@ -41,7 +46,8 @@ site.day.template
 ├── pojo       			            --  实体类模块
 │       └── domain                 
 │       └── dto                 
-│       └── vo                 
+│       └── vo    
+├── server                                  --  服务器监控模块
 ├── service       			    --  服务模块
 │       └── impl                            --  服务实现类模块
 ├── strategy      			    --  策略模块（用于扩展第三方登录，搜索模式，上传文件模式等策略）
@@ -53,10 +59,10 @@ site.day.template
 - 利用自定义注解aop实现api限流、防表单重复提交、操作日志管理
 - 支持动态权限修改，采用RBAC权限模型
 - 代码支持支持多种上传模式（阿里OSS、本地、七牛云等）
-- 代码遵循阿里巴巴开发规范
 - 采用自定义utils复写各类工具库，减少该模板对工具库的依赖，降低耦合性
 - 复写SpringSecurity配置，实现自定义权限管理
 - 采用docker-compose编排docker容器，一键启动
+- 服务器性能检测
 
 ## 技术栈介绍
 

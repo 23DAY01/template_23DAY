@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * @Description 登录类型常量
+ * @Description 登录类型枚举
  * @ClassName LoginTypeEnum
  * @Author 23DAY
  * @Date 2022/9/15 20:34

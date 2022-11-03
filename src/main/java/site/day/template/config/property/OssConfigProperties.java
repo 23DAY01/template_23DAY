@@ -5,10 +5,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * oss配置属性
- *
- * @author yezhiqiu
- * @date 2021/07/28
+ * @Description OSS配置
+ * @ClassName OssConfigProperties
+ * @Author 23DAY
+ * @Date 2022/9/14 22:12
+ * @Version 1.0
  */
 @Data
 @Configuration

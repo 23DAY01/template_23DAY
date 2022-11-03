@@ -160,4 +160,8 @@ public class FileUtil {
         return cn.hutool.core.io.FileUtil.extName(originalFilename);
     }
 
+    public static Boolean judgeFileInvalid(MultipartFile file) {
+
+        return true;
+    }
 }

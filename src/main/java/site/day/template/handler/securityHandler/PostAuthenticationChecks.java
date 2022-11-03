@@ -8,6 +8,14 @@ import org.springframework.security.core.userdetails.UserDetailsChecker;
 import org.springframework.stereotype.Component;
 import site.day.template.enums.StatusCodeEnum;
 
+
+/**
+ * @Description 用户认证后检查
+ * @ClassName PostAuthenticationChecks
+ * @Author 23DAY
+ * @Date 2022/9/14 22:12
+ * @Version 1.0
+ */
 @Log4j2
 @Component
 public class PostAuthenticationChecks implements UserDetailsChecker {

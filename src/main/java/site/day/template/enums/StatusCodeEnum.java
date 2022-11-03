@@ -8,7 +8,7 @@ import static site.day.template.constant.AuthConst.StatusMessage;
 
 
 /**
- * @Description 业务状态码
+ * @Description 业务状态码枚举
  * regex：([A-Z\w]+)\(([0-9]+),\s".+"\),
  *          $1
  * @ClassName StatusCode
@@ -76,7 +76,7 @@ public enum StatusCodeEnum {
 
     //      数据库错误
     SQL_ERROR(5000401, StatusMessage.SQL_ERROR),
-    REDIS_CONNECTION_ERROR(5000402, StatusMessage.REDIS_CONNECTION_ERROR);
+    REDIS_ERROR(5000402, StatusMessage.REDIS_ERROR);
 
 
     private final Integer code;

@@ -19,6 +19,14 @@ import site.day.template.enums.StatusCodeEnum;
 import site.day.template.filter.BodyReaderRequestWrapper;
 import site.day.template.utils.*;
 
+
+/**
+ * @Description 重复提交检测
+ * @ClassName RepeatSubmitInterceptor
+ * @Author 23DAY
+ * @Date 2022/9/14 22:12
+ * @Version 1.0
+ */
 @Log4j2
 public class RepeatSubmitInterceptor implements HandlerInterceptor {
 

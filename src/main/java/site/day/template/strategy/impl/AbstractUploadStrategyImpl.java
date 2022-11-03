@@ -28,7 +28,9 @@ public abstract class AbstractUploadStrategyImpl implements UploadStrategy {
             // 获取上传路径
             String uploadPath = FileUtil.generateUploadPath(originalFilename, typePath);
 
-            //TODO:判断是否是图片 并且 检查图片的合法性
+            //TODO:判断文件类型 并检验合法性
+
+            Boolean fileInvalid = FileUtil.judgeFileInvalid(file);
 
             // 判断文件是否已存在
             if (!exists(uploadPath)) {

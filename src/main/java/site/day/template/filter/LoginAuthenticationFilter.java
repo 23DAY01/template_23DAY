@@ -13,6 +13,13 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @Description 封装username和password
+ * @ClassName LoginAuthenticationFilter
+ * @Author 23DAY
+ * @Date 2022/9/14 22:12
+ * @Version 1.0
+ */
 public class LoginAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 

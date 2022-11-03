@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * @Description 上传模式类型
+ * @Description 上传模式类型枚举
  * @ClassName UploadModeEnum
  * @Author 23DAY
  * @Date 2022/9/15 20:34
@@ -38,11 +38,12 @@ public enum UploadModeEnum {
     private final String strategy;
 
     /**
-     * 获取策略
-     *
-     * @param mode 模式
-     * @return {@link String} 搜索策略
-     */
+     * @Description 获取策略
+     * @Author 23DAY
+     * @Date 2022/11/2 20:26
+     * @Param [java.lang.String]
+     * @return java.lang.String
+     **/
     public static String getStrategy(String mode) {
         for (UploadModeEnum value : UploadModeEnum.values()) {
             if (value.getMode().equals(mode)) {

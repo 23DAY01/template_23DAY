@@ -14,6 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
+/**
+ * @Description session非法策略
+ * @ClassName InvalidSessionStrategyImpl
+ * @Author 23DAY
+ * @Date 2022/9/14 22:12
+ * @Version 1.0
+ */
 @Component
 public class InvalidSessionStrategyImpl implements InvalidSessionStrategy {
  

@@ -22,14 +22,21 @@ import java.util.stream.Collectors;
  */
 @Component
 public class AccessDecisionManagerImpl implements AccessDecisionManager {
+
+    /**
+     * @Description  判断用户是否拥有所访问资源的权限
+     * @Author 23DAY
+     * @Date 2022/11/2 20:31
+     * @Param [org.springframework.security.core.Authentication, java.lang.Object, java.util.Collection<org.springframework.security.access.ConfigAttribute>]
+     **/
     @Override
     public void decide(Authentication authentication, Object o, Collection<ConfigAttribute> collection) throws AccessDeniedException, InsufficientAuthenticationException {
-        // 获取用户权限列表
-//        判断用户是否拥有所访问资源的权限
+        // 获取用户权限
         List<String> permissionList = authentication.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
+
         for (ConfigAttribute item : collection) {
             if (permissionList.contains(item.getAttribute())) {
                 return;

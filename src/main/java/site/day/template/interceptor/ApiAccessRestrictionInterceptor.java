@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import static site.day.template.constant.RedisPrefixConst.API_ACCESS_RESTRICTION;
 
 /**
- * @Description 登出成功处理器
- * @ClassName LogoutSuccessHandlerImpl
+ * @Description API限流
+ * @ClassName ApiAccessRestrictionInterceptor
  * @Author 23DAY
  * @Date 2022/9/14 22:12
  * @Version 1.0

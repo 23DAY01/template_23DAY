@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * @Description 用户类型常量
+ * @Description 用户类型枚举
  * @ClassName UserAreaTypeEnum
  * @Author 23DAY
  * @Date 2022/9/15 20:34
@@ -33,11 +33,12 @@ public enum UserAreaTypeEnum {
     private final String desc;
 
     /**
-     * 获取用户区域类型
-     *
-     * @param type 类型
-     * @return {@link UserAreaTypeEnum} 用户区域类型枚举
-     */
+     * @Description 获取用户区域类型
+     * @Author 23DAY
+     * @Date 2022/11/2 20:26
+     * @Param [java.lang.Integer]
+     * @return site.day.template.enums.UserAreaTypeEnum
+     **/
     public static UserAreaTypeEnum getUserAreaType(Integer type) {
         for (UserAreaTypeEnum value : UserAreaTypeEnum.values()) {
             if (value.getType().equals(type)) {

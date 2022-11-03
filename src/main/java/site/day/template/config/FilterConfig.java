@@ -7,9 +7,11 @@ import site.day.template.filter.RepeatableFilter;
 
 
 /**
- * Filter配置
- *
- * @author ruoyi
+ * @Description 过滤器配置
+ * @ClassName FilterConfig
+ * @Author 23DAY
+ * @Date 2022/9/18 14:46
+ * @Version 1.0
  */
 @Configuration
 public class FilterConfig

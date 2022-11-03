@@ -84,7 +84,7 @@ public class AuthConst {
 
         //      数据库错误
         String SQL_ERROR = "数据库异常";
-        String REDIS_CONNECTION_ERROR = "redis连接异常";
+        String REDIS_ERROR = "redis连接异常";
 
 
     }

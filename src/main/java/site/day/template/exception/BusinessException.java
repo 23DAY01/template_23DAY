@@ -7,23 +7,18 @@ import lombok.Getter;
 
 import java.io.Serializable;
 
-//TODO 代码耦合性太强 主要是为了配合在filter中抛出异常而设计的
-
 /**
- * @Description 自定义业务异常
+ * @Description 业务异常
  * @ClassName BusinessException
  * @Author 23DAY
  * @Date 2022/9/14 22:12
  * @Version 1.0
  */
 @Getter
-@AllArgsConstructor
-public class BusinessException extends RuntimeException implements Serializable {
+public class BusinessException extends BaseException {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer code;
-    private String message;
 
     private BusinessException() {
         super();

@@ -1,7 +1,7 @@
 package site.day.template.constant;
 
 /**
- * @Description 第三方登录 常量
+ * @Description 第三方登录常量
  * @ClassName SocialLoginConst
  * @Author 23DAY
  * @Date 2022/9/14 22:12

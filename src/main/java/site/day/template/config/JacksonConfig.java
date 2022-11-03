@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static site.day.template.constant.CommonConst.DATE_PATTERN;
+import static site.day.template.constant.DateConst.YYYY_MM_DD_HH_MM_SS;
 
 
 /**
@@ -25,7 +25,7 @@ public class JacksonConfig {
     //解决jackson处理时间格式问题
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer localDateTimeCustomizer() {
-        return builder -> builder.serializerByType(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(DATE_PATTERN)));
+        return builder -> builder.serializerByType(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(YYYY_MM_DD_HH_MM_SS)));
     }
 
 }

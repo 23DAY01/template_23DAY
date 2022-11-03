@@ -31,7 +31,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
     /**
-     * @return void
      * @Description 解决跨域问题  在添加了springSecurity就不生效了
      * @Author 23DAY
      * @Date 2022/10/14 20:49
@@ -48,7 +47,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 
     /**
-     * @return void
      * @Description 注册关于api访问限制的拦截器
      * @Author 23DAY
      * @Date 2022/10/14 20:48
@@ -65,7 +63,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
      * @Author 23DAY
      * @Date 2022/10/14 20:49
      * @Param [org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry]
-     * @return void
      **/
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

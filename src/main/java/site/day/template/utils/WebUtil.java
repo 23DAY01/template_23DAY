@@ -1,6 +1,5 @@
 package site.day.template.utils;
 
-import cn.hutool.core.convert.Convert;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -126,7 +125,7 @@ public class WebUtil {
     public static void render(HttpServletResponse response, String string) {
         try {
             response.setContentType(WebConst.HEADER.CONTENT_TYPE_JSON);
-            response.setCharacterEncoding(WebConst.HEADER.CHARSET);
+            response.setCharacterEncoding(WebConst.HEADER.CHARSET_UTF8);
             response.getWriter().write(string);
         } catch (IOException e) {
             e.printStackTrace();

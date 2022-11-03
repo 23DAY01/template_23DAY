@@ -53,8 +53,11 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
     }
 
     /**
-     * 更新用户信息
-     */
+     * @Description 更新用户信息
+     * @Author 23DAY
+     * @Date 2022/11/2 20:02
+     * @Param []
+     **/
     @Async
     public void updateUserInfo() {
         UserDetail loginUser = AuthUtil.getLoginUser();

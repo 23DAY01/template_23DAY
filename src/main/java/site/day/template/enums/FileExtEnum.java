@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * @Description 文件拓展名常量
+ * @Description 文件拓展名枚举
  * @ClassName FileExtEnum
  * @Author 23DAY
  * @Date 2022/9/15 20:34
@@ -39,11 +39,12 @@ public enum FileExtEnum {
     TXT(".txt","txt文件");
 
     /**
-     * 获取文件格式
-     *
-     * @param extName 扩展名
-     * @return {@link FileExtEnum} 文件格式
-     */
+     * @Description 获取文件格式
+     * @Author 23DAY
+     * @Date 2022/11/2 20:24
+     * @Param [java.lang.String]
+     * @return site.day.template.enums.FileExtEnum
+     **/
     public static FileExtEnum getFileExt(String extName) {
         for (FileExtEnum value : FileExtEnum.values()) {
             if (value.getExtName().equalsIgnoreCase(extName)) {

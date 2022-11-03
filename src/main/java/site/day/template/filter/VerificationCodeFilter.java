@@ -26,7 +26,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * 基于过滤器实现图形验证码的验证功能,这属于Servlet层面,简单易理解.
+ * @Description 基于过滤器实现图形验证码
+ * @ClassName VerificationCodeFilter
+ * @Author 23DAY
+ * @Date 2022/9/14 22:12
+ * @Version 1.0
  */
 public class VerificationCodeFilter extends OncePerRequestFilter {
 

@@ -1,5 +1,7 @@
 package site.day.template.constant;
 
+import cn.hutool.core.date.DatePattern;
+
 /**
  * @Description 日期常量
  * @ClassName DateConst
@@ -16,4 +18,10 @@ public class DateConst {
     public static String YYYY_MM_DD = "yyyy-MM-dd";
 
     public static String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
+
+    /**
+     * 时间格式
+     */
+    public static final String DATE_PATTERN = DatePattern.NORM_DATETIME_PATTERN;
+
 }

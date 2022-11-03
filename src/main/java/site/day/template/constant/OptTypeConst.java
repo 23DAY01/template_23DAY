@@ -1,7 +1,7 @@
 package site.day.template.constant;
 
 /**
- * @Description 操作日志 常量
+ * @Description 操作日志常量
  * @ClassName OptTypeConst
  * @Author 23DAY
  * @Date 2022/9/14 22:12

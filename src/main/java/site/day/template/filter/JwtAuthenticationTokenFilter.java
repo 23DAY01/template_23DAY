@@ -12,7 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
+/**
+ * @Description Jwt过滤器
+ * @ClassName JwtAuthenticationTokenFilter
+ * @Author 23DAY
+ * @Date 2022/9/14 22:12
+ * @Version 1.0
+ */
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 

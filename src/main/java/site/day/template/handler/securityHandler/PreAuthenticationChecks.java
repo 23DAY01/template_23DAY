@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import site.day.template.enums.StatusCodeEnum;
 
 /**
- * @Description
+ * @Description 用户认证后检查
  * @ClassName PreAuthenticationChecks
  * @Author 23DAY
  * @Date 2022/10/16 15:01

@@ -18,7 +18,7 @@ public interface WebConst {
     interface HEADER {
         String USER_AGENT = "user-agent";
         String CONTENT_TYPE_JSON = "application/json";
-        String CHARSET = "utf-8";
+        String CHARSET_UTF8 = "utf-8";
 
         String CONTENT_TYPE_IMAGE="image/jpeg";
 

@@ -6,12 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 import site.day.template.utils.ResponseAPI;
 
 /**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author 23DAY
- * @since 2022-10-12
+ * @Description 菜单控制器
+ * @ClassName MenuController
+ * @Author 23DAY
+ * @Date 2022/9/18 14:47
+ * @Version 1.0
  */
 @RestController
 @RequestMapping("/menu")
