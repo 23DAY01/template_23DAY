@@ -8,7 +8,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 @EnableCaching
-public class Template23DayApplication {
+public class  Template23DayApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(Template23DayApplication.class, args);
