@@ -56,7 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private UserDetailsServiceImpl userDetailsService;
 
-    //  证异常处理
+    //  认证异常处理
     @Resource
     private AuthenticationEntryPointImpl authenticationEntryPoint;
 

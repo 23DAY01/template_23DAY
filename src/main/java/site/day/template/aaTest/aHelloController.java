@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import site.day.template.annotation.AccessLimit;
 import site.day.template.annotation.OptLog;
-import site.day.template.annotation.RepeatSubmit;
 import site.day.template.constant.OptTypeConst;
 import site.day.template.enums.StatusCodeEnum;
 import site.day.template.exception.BusinessException;
@@ -45,7 +44,7 @@ public class aHelloController {
 
     @GetMapping("/hello3")
     public ResponseAPI<?> hello3() {
-        throw BusinessException.withErrorCodeEnum(StatusCodeEnum.AUTH_FAIL);
+        throw BusinessException.withErrorCodeEnum(StatusCodeEnum.AUTH_FAILED);
 //        return ResponseAPI.success("hello");
     }
 }
