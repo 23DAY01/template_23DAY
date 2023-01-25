@@ -1,6 +1,8 @@
 package site.day.template.constant;
 
 
+import java.awt.*;
+
 /**
  * @Description 公共 常量
  * @ClassName CommonConst
@@ -35,7 +37,14 @@ public class CommonConst {
      */
     public static final String UNKNOWN = "未知";
 
-
+    /**
+     * 分页常量
+     */
+    public static final String PAGE_CURRENT = "current";
+    public static final String PAGE_SIZE = "size";
+    public static final String PAGE_TOTAL = "total";
+    public static final long PAGE_DEFAULT_CURRENT = 1L;
+    public static final long PAGE_DEFAULT_SIZE = 10L;
 
 
 }

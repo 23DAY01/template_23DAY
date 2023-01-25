@@ -1,6 +1,7 @@
 package site.day.template.utils;
 
 import cn.hutool.core.util.StrUtil;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @Description
@@ -20,6 +21,14 @@ public class StringUtil {
      **/
     public static Boolean isNullOrUndefined(String str) {
         return StrUtil.isNullOrUndefined(str);
+    }
+
+    public static Boolean isNotEmpty(String str){
+        return StrUtil.isNotEmpty(str);
+    }
+
+    public static Boolean isNullOrEmpty(String str){
+        return str == null || str.isEmpty();
     }
 
     /**

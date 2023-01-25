@@ -10,6 +10,7 @@ import site.day.template.annotation.OptLog;
 import site.day.template.constant.OptTypeConst;
 import site.day.template.enums.StatusCodeEnum;
 import site.day.template.exception.BusinessException;
+import site.day.template.utils.PageUtil;
 import site.day.template.utils.ResponseAPI;
 
 /**
@@ -46,5 +47,9 @@ public class aHelloController {
     public ResponseAPI<?> hello3() {
         throw BusinessException.withErrorCodeEnum(StatusCodeEnum.AUTH_FAILED);
 //        return ResponseAPI.success("hello");
+    }
+    @GetMapping("/hello4")
+    public ResponseAPI<?> hello4(){
+        return ResponseAPI.success(PageUtil.getCurrent());
     }
 }
