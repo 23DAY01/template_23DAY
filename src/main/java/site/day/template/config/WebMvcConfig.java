@@ -1,6 +1,8 @@
 package site.day.template.config;
 
 
+import org.apache.catalina.SessionListener;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import site.day.template.interceptor.ApiAccessRestrictionInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +12,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import site.day.template.interceptor.PageableInterceptor;
 import site.day.template.interceptor.RepeatSubmitInterceptor;
-
 /**
  * @Description WebMvc配置
  * @ClassName WebMvcConfig
@@ -27,7 +28,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public PageableInterceptor PageableInterceptor(){
+    public PageableInterceptor PageableInterceptor() {
         return new PageableInterceptor();
     }
 
@@ -77,5 +78,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
+
 
 }

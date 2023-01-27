@@ -1,5 +1,6 @@
 package site.day.template.config;
 
+import io.lettuce.core.api.push.PushListener;
 import org.apache.lucene.index.PostingsEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +23,7 @@ import site.day.template.constant.AuthConst;
 import site.day.template.filter.LoginAuthenticationFilter;
 import site.day.template.filter.RepeatableFilter;
 import site.day.template.handler.securityHandler.*;
+import site.day.template.listener.RedisHttpSessionListener;
 import site.day.template.service.impl.UserDetailsServiceImpl;
 
 import javax.annotation.Resource;
@@ -146,6 +148,12 @@ public class SecurityBeanCreateConfig {
     @Bean
     public HttpSessionEventPublisher httpSessionEventPublisher() {
         return new HttpSessionEventPublisher();
+    }
+
+    //自定义session监听器
+    @Bean
+    public RedisHttpSessionListener redisHttpSessionListener(){
+        return new RedisHttpSessionListener();
     }
 
     // session错误策略

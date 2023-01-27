@@ -29,7 +29,7 @@ import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author 23DAY
@@ -50,11 +50,11 @@ public class RoleResourceServiceImpl extends ServiceImpl<RoleResourceMapper, Rol
 
 
     /**
+     * @return java.util.List<site.day.template.pojo.dto.RoleResourceDTO>
      * @Description 获取RoleResourceDTOs
      * @Author 23DAY
      * @Date 2022/9/17 17:51
      * @Param []
-     * @return java.util.List<site.day.template.pojo.dto.RoleResourceDTO>
      **/
     @Override
     public List<RoleResourceDTO> listRoleResourceDTOs() {
@@ -72,7 +72,7 @@ public class RoleResourceServiceImpl extends ServiceImpl<RoleResourceMapper, Rol
         Set<Integer> roleIds = roleResourceList.stream().map(RoleResource::getRoleId).collect(Collectors.toSet());
 //        获取角色
         LambdaQueryWrapper<Role> roleLambdaQueryWrapper = new LambdaQueryWrapper<>();
-        roleLambdaQueryWrapper.in(Role::getId,roleIds);
+        roleLambdaQueryWrapper.in(Role::getId, roleIds);
         List<Role> roleList = roleService.list(roleLambdaQueryWrapper);
 //        转换
 
@@ -81,8 +81,10 @@ public class RoleResourceServiceImpl extends ServiceImpl<RoleResourceMapper, Rol
 
         for (RoleResourceDTO roleResourceDTO : roleResourceDTOList) {
 //            获取当前资源的所有角色
-            List<Role> roles = ListUtils.select(roleList, role -> emptyIfNull(resourceId2roleIdMap.get(roleResourceDTO.getResourceId())).contains(role.getId()));
-//            填充
+            List<Role> roles = roleList.stream()
+                    .filter(role -> emptyIfNull(resourceId2roleIdMap.get(roleResourceDTO.getResourceId())).contains(role.getId()))
+                    .collect(Collectors.toList());
+            //  填充
             roleResourceDTO.setRoleList(roles.stream().map(Role::getLabel).collect(Collectors.toList()));
         }
 

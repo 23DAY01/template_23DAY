@@ -1,6 +1,10 @@
 package site.day.template.utils;
 
 
+import site.day.template.aaTest.a;
+import site.day.template.aaTest.b;
+import site.day.template.aaTest.c;
+import site.day.template.aaTest.d;
 import site.day.template.pojo.domain.Resource;
 import site.day.template.pojo.domain.UserAuth;
 import site.day.template.pojo.domain.UserInfo;
@@ -46,6 +50,13 @@ public interface MapStruct {
     //Vo Dto2Vo(Dto dto);
     //
     //List<Vo> Dtos2Vos(List<Dto> dtos);
+
+    @Mapping(source = "c",target = "d")
+    b a2b(a a);
+    @Mapping(source = "d",target = "c")
+    a b2a(b b);
+    c d2c(d d);
+    d c2d(c c);
 
 
     /*

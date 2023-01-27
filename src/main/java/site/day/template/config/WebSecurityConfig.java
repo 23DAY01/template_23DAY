@@ -27,6 +27,7 @@ import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.session.InvalidSessionStrategy;
 import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 import org.springframework.web.cors.CorsConfigurationSource;
+import site.day.template.listener.RedisHttpSessionListener;
 import site.day.template.service.impl.UserDetailsServiceImpl;
 
 import javax.annotation.Resource;
@@ -173,6 +174,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private HttpSessionEventPublisher httpSessionEventPublisher;
 
+    @Resource
+    private RedisHttpSessionListener redisHttpSessionListener;
+
     // session错误策略
     @Resource
     private InvalidSessionStrategyImpl invalidSessionStrategy;
@@ -288,8 +292,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
 //                // 自定义登录过滤器
                 .addFilterAt(LoginAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-                // 图形验证码
-                //.addFilterBefore(new VerificationCodeFilter(), UsernamePasswordAuthenticationFilter.class);
+        // 图形验证码
+        //.addFilterBefore(new VerificationCodeFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
 
