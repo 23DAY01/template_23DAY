@@ -87,9 +87,9 @@ public class OptLogAspect {
         // 返回结果
         operationLog.setResponseData(JsonUtil.Object2String(keys));
         // 请求用户ID
-        operationLog.setUserId(AuthUtil.getLoginUser().getUserInfoDTO().getId());
+        operationLog.setUserId(AuthUtil.getLoginUser().getUserInfo().getId());
         // 请求用户
-        operationLog.setNickname(AuthUtil.getLoginUser().getUserInfoDTO().getNickname());
+        operationLog.setNickname(AuthUtil.getLoginUser().getUserInfo().getNickname());
         // 请求IP
         String ipAddress = WebUtil.getIpAddress(request);
         operationLog.setIpAddress(ipAddress);

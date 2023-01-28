@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -24,32 +25,38 @@ public class UserInfoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户信息id
+     * 主键
      */
-    @ApiModelProperty("用户信息id")
     private Integer id;
 
     /**
-     * 邮箱号
+     * 邮箱
      */
-    @ApiModelProperty("用户信息id")
     private String email;
 
     /**
      * 用户昵称
      */
-    @ApiModelProperty("用户昵称")
     private String nickname;
 
     /**
      * 用户头像
      */
-    @ApiModelProperty("用户头像")
     private String avatar;
 
     /**
      * 用户简介
      */
-    @ApiModelProperty("用户简介")
     private String intro;
+
+    /**
+     * 个人网站
+     */
+    private String website;
+
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
+
 }

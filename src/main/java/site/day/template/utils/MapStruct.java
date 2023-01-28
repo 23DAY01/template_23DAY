@@ -12,7 +12,6 @@ import site.day.template.pojo.dto.RoleResourceDTO;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 import org.springframework.stereotype.Component;
 import site.day.template.pojo.dto.UserAuthDTO;
 import site.day.template.pojo.dto.UserInfoDTO;
@@ -71,22 +70,22 @@ public interface MapStruct {
     /*
      * 用户认证 转换
      **/
-    UserAuth userAuthDto2userAuth(UserAuthDTO userAuthDto);
+    UserAuth UserAuthDTO2UserAuth(UserAuthDTO userAuthDto);
 
-    List<UserAuth> userAuthDtos2userAuths(List<UserAuthDTO> userAuthDTOS);
+    List<UserAuth> UserAuthDTOList2UserAuthList(List<UserAuthDTO> userAuthDTOS);
 
-    UserAuthDTO userAuth2userAuthDto(UserAuth userAuth);
+    UserAuthDTO UserAuth2UserAuthDTO(UserAuth userAuth);
 
-    List<UserAuthDTO> userAuths2userAuthDtos(List<UserAuth> userAuths);
+    List<UserAuthDTO> UserAuthList2UserAuthDTOList(List<UserAuth> userAuths);
 
 
     /*
      * 用户信息 转换
      **/
 
-    UserInfoDTO userInfo2UserInfoDto(UserInfo userInfo);
+    UserInfoDTO UserInfo2UserInfoDTO(UserInfo userInfo);
 
-    List<UserInfoDTO> userInfos2UserInfoDtos(List<UserInfo> userInfos);
+    List<UserInfoDTO> UserInfoList2UserInfoDTOList(List<UserInfo> userInfos);
 
 }
 

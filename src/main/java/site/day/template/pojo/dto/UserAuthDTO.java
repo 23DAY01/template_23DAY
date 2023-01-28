@@ -23,36 +23,60 @@ public class UserAuthDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 主键
+     */
     private Integer id;
 
-    @ApiModelProperty("用户信息id")
+    /**
+     * 用户信息id
+     */
     private Integer userInfoId;
 
-    @ApiModelProperty("用户名")
+    /**
+     * 用户名
+     */
     private String username;
 
-    @ApiModelProperty("密码")
+    /**
+     * 密码
+     */
     private String password;
 
-    @ApiModelProperty("登录类型")
+    /**
+     * 登录类型
+     */
     private Integer loginType;
 
-    @ApiModelProperty("用户登录ip")
+    /**
+     * ip地址
+     */
     private String ipAddress;
 
-    @ApiModelProperty("ip来源")
+    /**
+     * ip来源
+     */
     private String ipSource;
 
-    @ApiModelProperty("上次登录时间")
+    /**
+     * 上次登录时间
+     */
     private LocalDateTime lastLoginTime;
 
-    @ApiModelProperty("是否被禁用")
-    private Boolean isDisabled;
-
-    @ApiModelProperty("用户操作系统")
+    /**
+     * 用户操作系统
+     */
     private String os;
 
-    @ApiModelProperty("用户浏览器")
+    /**
+     * 用户浏览器
+     */
     private String browser;
+
+    /**
+     * 是否禁用 0否 1是
+     */
+    private Boolean isDisabled;
+
 
 }
