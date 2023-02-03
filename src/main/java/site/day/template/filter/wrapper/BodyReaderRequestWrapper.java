@@ -1,4 +1,4 @@
-package site.day.template.filter;
+package site.day.template.filter.wrapper;
 
 import site.day.template.constant.CommonConst;
 import site.day.template.constant.WebConst;

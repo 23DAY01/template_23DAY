@@ -11,7 +11,7 @@ public interface StatusMsgConst {
 
 
     String SUCCESS = "success";
-    String UNKNOWN_CLIENT_ERROR="客户端未知异常";
+    String UNKNOWN_CLIENT_ERROR = "客户端未知异常";
     String UNKNOWN_RUNTIME_ERROR = "运行时未知异常";
     String UNKNOWN_SYSTEM_ERROR = "系统未知异常";
 
@@ -51,6 +51,9 @@ public interface StatusMsgConst {
     String API_ACCESS_FREQUENT = "接口访问频繁";
     String API_REPEAT_SUBMIT = "重复提交";
     String API_ACCESS_METHOD_ERROR = "接口访问方法错误";
+
+    //安全检测
+    String SECURITY_CHECK_XSSorSQL = "检测到xss和sql注入";
 
 
     /**

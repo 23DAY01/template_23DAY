@@ -10,13 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import site.day.template.annotation.RepeatSubmit;
 import site.day.template.constant.RedisPrefixConst;
 import site.day.template.enums.StatusCodeEnum;
-import site.day.template.filter.BodyReaderRequestWrapper;
+import site.day.template.filter.wrapper.BodyReaderRequestWrapper;
 import site.day.template.utils.*;
 
 

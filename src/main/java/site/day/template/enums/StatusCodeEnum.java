@@ -62,6 +62,9 @@ public enum StatusCodeEnum {
     API_REPEAT_SUBMIT(4000402, StatusMsgConst.API_REPEAT_SUBMIT),
     API_ACCESS_METHOD_ERROR(4000403, StatusMsgConst.API_ACCESS_METHOD_ERROR),
 
+    // 安全检测
+    SECURITY_CHECK_XSSorSQL(4000501,StatusMsgConst.SECURITY_CHECK_XSSorSQL),
+
 
 
     /**
