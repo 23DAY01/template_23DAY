@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -39,10 +40,12 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
                 .stream().map(UserRole::getRoleId).collect(Collectors.toSet());
 
 //        根据roleId查询role 提取roleLabel
-        List<Role> roleList = list(Wrappers.lambdaQuery(Role.class)
-                .in(CollectionUtils.isNotEmpty(roleIds), Role::getId, roleIds));
+        List<Role> roleList;
+        if (CollectionUtils.isNotEmpty(roleIds)) {
+            roleList = list(Wrappers.lambdaQuery(Role.class).in(Role::getId, roleIds));
+        } else {
+            roleList = Collections.emptyList();
+        }
         return roleList.stream().map(Role::getLabel).collect(Collectors.toList());
-
-
     }
 }
